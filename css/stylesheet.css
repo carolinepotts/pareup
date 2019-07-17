@@ -1,0 +1,43 @@
+.body {
+	font: 400 15px Helvetica;
+	line-height: 1.8;
+	color: #ffffff; /* white */
+}
+
+.add-btn {
+	background-color: #ffffff;
+	color: #1d60b8;
+	border: 1px solid #1d60b8;
+}
+
+.search-btn {
+	background-color: #1d60b8;
+	color: #ffffff;
+	border: 1px solid #ffffff;
+}
+
+.jumbotron {
+	background-color: #1d60b8; /* blue */
+	color: #ffffff; 
+}
+
+.navbar {
+	margin-bottom: 0;
+	background-color: #ffffff;
+	border: 0;
+	font-size: 14px;
+	letter-spacing: 2px;
+	border-radius: 0;
+}
+
+.navbar li a, .navbar .navbar-brand {
+	color: #1d60b8 !important;
+}
+
+.navbar-nav li a:hover, .navbar-nav li.active a {
+	text-shadow: 0 0 3px #dbdbdb;
+}
+
+.navbar-default .navbar-toggle {
+	border-color: transparent;
+}
