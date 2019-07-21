@@ -12,6 +12,7 @@
   "dependencies": {
     "concurrently": "^4.0.1",
     "dotenv": "^8.0.0",
+    "multiselect-dropdown-react": "^1.0.5",
     "react-country-region-selector": "^1.4.3"
   }
 }
