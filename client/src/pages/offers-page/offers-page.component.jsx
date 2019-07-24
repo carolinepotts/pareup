@@ -7,11 +7,14 @@ import NEGOTIATED from '../../fields/negotiated';
 import COMPANY_SIZES from '../../fields/company_sizes';
 import 'react-widgets/dist/css/react-widgets.css'
 import Card from '../../components/card/card.component';
+import SorryMessage from '../../components/sorry_message/sorry_message.component';
 
 
 class OffersPage extends React.Component {
     constructor(props) {
         super(props);
+
+        this.num_entries_needed = 3;
 
         this.state = {
             intervalIsSet: false,
@@ -96,7 +99,15 @@ class OffersPage extends React.Component {
                     valueField={item => item.value}
                     onChange={value => this.setState({ company_sizes: value }, () => console.log(this.state))} />
 
-                <Card data={this.applyFilters(this.state.data)} />
+                {
+                    this.applyFilters(this.state.data).length < this.num_entries_needed ?
+
+                        <SorryMessage />
+                        :
+                        <Card field='salary' data={this.applyFilters(this.state.data)} />
+
+                }
+
             </div>
         );
     }
