@@ -1,4 +1,4 @@
-const ED_LEVEL = [
+const ED_LEVELS = [
     {
         name: 'No high school degree or equivalent',
         value: 'No high school degree or equivalent'
@@ -25,4 +25,4 @@ const ED_LEVEL = [
     }
 ];
 
-export default ED_LEVEL;
+export default ED_LEVELS;
