@@ -14,7 +14,7 @@ class OffersPage extends React.Component {
     constructor(props) {
         super(props);
 
-        this.num_entries_needed = 3;
+        this.num_entries_needed = 0;
 
         this.state = {
             intervalIsSet: false,
@@ -65,9 +65,9 @@ class OffersPage extends React.Component {
         console.log(this.state);
         return data.filter((doc) => {
             // console.log(this.state.ed_levels.map(item => item.name).includes(doc.ed_level));
-            console.log(this.state.job_titles.map(item => item.name).includes(doc.job_title));
-            console.log(this.state.negotiated.map(item => item.name).includes(doc.negotiated));
-            console.log(this.state.company_sizes.map(item => item.name).includes(doc.company_size));
+            // console.log(this.state.job_titles.map(item => item.name).includes(doc.job_title));
+            // console.log(this.state.negotiated.map(item => item.name).includes(doc.negotiated));
+            // console.log(this.state.company_sizes.map(item => item.name).includes(doc.company_size));
             return (this.state.ed_levels.map(item => item.name).includes(doc.ed_level) &&
                 this.state.job_titles.map(item => item.name).includes(doc.job_title) &&
                 this.state.negotiated.map(item => item.name).includes(doc.negotiated) &&
@@ -83,21 +83,25 @@ class OffersPage extends React.Component {
                 <Multiselect data={ED_LEVELS} textField={item => item.name}
                     placeholder='All Education Levels'
                     valueField={item => item.value}
-                    onChange={value => this.setState({ ed_levels: value }, () => console.log(this.state))} />
+                    onChange={value => this.setState((value.length>0) ? 
+                        { ed_levels: value } : {ed_levels: ED_LEVELS} , () => console.log(this.state))} />
 
                 <Multiselect data={JOB_TITLES} textField={item => item.name}
                     placeholder='All Job Titles'
                     valueField={item => item.value}
-                    onChange={value => this.setState({ job_titles: value }, () => console.log(this.state))} />
+                    onChange={value => this.setState((value.length>0) ? 
+                        { job_titles: value } : {job_titles: JOB_TITLES} , () => console.log(this.state))} />
 
                 <Multiselect data={NEGOTIATED} textField={item => item.name}
                     placeholder='All Negotiation Statuses'
                     valueField={item => item.value}
-                    onChange={value => this.setState({ negotiated: value }, () => console.log(this.state))} />
+                    onChange={value => this.setState((value.length>0) ? 
+                        { negotiated: value } : {negotiated: NEGOTIATED} , () => console.log(this.state))} />
                 <Multiselect data={COMPANY_SIZES} textField={item => item.name}
                     placeholder='All Company Sizes'
                     valueField={item => item.value}
-                    onChange={value => this.setState({ company_sizes: value }, () => console.log(this.state))} />
+                    onChange={value => this.setState((value.length>0) ? 
+                        { company_sizes: value } : {company_sizes: COMPANY_SIZES} , () => console.log(this.state))} />
 
                 {
                     this.applyFilters(this.state.data).length < this.num_entries_needed ?
