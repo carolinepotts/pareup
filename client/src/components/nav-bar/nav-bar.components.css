@@ -1,0 +1,20 @@
+.nav-bar {
+    background-color: #1d60b8;
+    color: white;
+    font-size: 20px;
+    hover: bold;
+}
+
+a.nav-bar:hover {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.logo {
+    font-size: 40px;
+}
+
+a.logo:hover {
+    font-weight: normal;
+}
