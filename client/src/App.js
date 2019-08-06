@@ -6,6 +6,7 @@ import OffersPage from './pages/offers-page/offers-page.component';
 import WelcomePage from './pages/welcome-page/welcome-page.component';
 import NegotiationPage from './pages/negotiation-page/negotiation-page.component';
 import SurveyPage from './pages/survey-page/survey-page.component';
+import './css/stylesheet.css';
 
 class App extends Component {
   // initialize our state
@@ -27,7 +28,10 @@ class App extends Component {
               </div>
 
               <div>
-                  <NavBar />
+                  <NavBar/>
+
+                  <br/>
+
                   <Switch>
                       <Route exact={true} path='/' component={WelcomePage} />
                       <Route exact={true} path='/offers' component={OffersPage} />
