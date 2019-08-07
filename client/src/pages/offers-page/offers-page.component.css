@@ -1,1 +1,4 @@
-/* import React, {Component} */
+.justify-content-center {
+    align-items: center;
+    display: flex;
+}
