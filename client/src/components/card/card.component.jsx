@@ -10,10 +10,10 @@ const DisplayCard = ({ data, field, title }) => {
     const per_75 = Math.floor(len * 0.75) == Math.ceil(len * 0.75) ? (stats[Math.floor(len * 0.75) - 1] + stats[Math.floor(len * 0.75)]) / 2 : stats[Math.ceil(len * 0.75) - 1]
 
     return (
-        <Card className="text-center" border="info" text="black">
+        <Card className="text-center" border="success" text="black">
             {console.log(stats)}
-            <Card.Header>
-                <h2>{title}</h2>
+            <Card.Header style={{backgroundColor: '#28a745'}}>
+                <h2 style={{color: '#ffffff'}}>{title}</h2>
             </Card.Header>
             <Card.Body>
                 <Row>
