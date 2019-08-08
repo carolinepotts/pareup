@@ -1,4 +1,9 @@
-.justify-content-center {
-    align-items: center;
-    display: flex;
+.filter {
+    align-self: center;
+    /* color: violet; */
+    /* background-color: violet; */
+}
+
+.rw-widget .rw-input {
+    color: violet;
 }

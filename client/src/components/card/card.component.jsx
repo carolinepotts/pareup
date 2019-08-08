@@ -1,28 +1,38 @@
 import React from 'react';
 import './card.component.css';
-import { Card } from "react-bootstrap";
+import { Card, Row, Col } from "react-bootstrap";
 
 const DisplayCard = ({ data, field, title }) => {
-    const stats = data.map((elem) => elem[field]).sort(function(a, b){return a-b});
+    const stats = data.map((elem) => elem[field]).sort(function (a, b) { return a - b });
     const len = stats.length;
     const median = (stats[Math.floor((len - 1) / 2)] + stats[Math.ceil((len - 1) / 2)]) / 2
-    const per_25 = Math.floor(len*0.25)==Math.ceil(len*0.25) ? (stats[Math.floor(len*0.25)-1]+stats[Math.floor(len*0.25)])/2 : stats[Math.ceil(len*0.25)-1]
-    const per_75 = Math.floor(len*0.75)==Math.ceil(len*0.75) ? (stats[Math.floor(len*0.75)-1]+stats[Math.floor(len*0.75)])/2 : stats[Math.ceil(len*0.75)-1]
-    
+    const per_25 = Math.floor(len * 0.25) == Math.ceil(len * 0.25) ? (stats[Math.floor(len * 0.25) - 1] + stats[Math.floor(len * 0.25)]) / 2 : stats[Math.ceil(len * 0.25) - 1]
+    const per_75 = Math.floor(len * 0.75) == Math.ceil(len * 0.75) ? (stats[Math.floor(len * 0.75) - 1] + stats[Math.floor(len * 0.75)]) / 2 : stats[Math.ceil(len * 0.75) - 1]
+
     return (
-        <Card className="text-center" bg="light" text="black">
+        <Card className="text-center" border="info" text="black">
             {console.log(stats)}
             <Card.Header>
                 <h2>{title}</h2>
             </Card.Header>
             <Card.Body>
-                <h2>  ${median / 1000}k </h2>
-                Median
-                <br/>
-                {per_25}
-                <br/>
-                {per_75}
-
+                <Row>
+                <Col>
+                        <h2>  ${per_25 / 1000}k </h2>
+                        25th
+        
+                    </Col>
+                    <Col>
+                        <h2>  ${median / 1000}k </h2>
+                        Median
+        
+                    </Col>
+                    <Col>
+                        <h2>  ${per_75 / 1000}k </h2>
+                        75th
+        
+                    </Col>
+                </Row>
             </Card.Body>
         </Card>
     );

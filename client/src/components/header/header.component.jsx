@@ -15,7 +15,7 @@ class Header extends React.Component {
         <Navbar.Brand href="#home">PareUp</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mr-auto">
+          <Nav className="ml-auto">
             <Nav.Link href="/" >Home</Nav.Link>
             <Nav.Link href="/offers">View Offers</Nav.Link>
             <Nav.Link href="/survey">Enter Your Offer</Nav.Link>
