@@ -12,7 +12,7 @@ class Header extends React.Component {
     }
 
     render() {
-        return (<Navbar style={{backgroundColor: '#28a745', paddingLeft: '75px', paddingRight: '75px'}} variant='dark'>
+        return (<Navbar style={{backgroundColor: '#28a745', paddingLeft: '60px', paddingRight: '60px'}} variant='dark'>
         <Navbar.Brand href="/offers" style={{color: '#ffffff', fontSize: '40px'}}>PareUp</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
