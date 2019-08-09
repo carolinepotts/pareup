@@ -8,7 +8,7 @@ import COMPANY_SIZES from '../../fields/company_sizes';
 import 'react-widgets/dist/css/react-widgets.css'
 import Card from '../../components/card/card.component';
 import SorryMessage from '../../components/sorry_message/sorry_message.component';
-import { Jumbotron, Row, Col, Container } from "react-bootstrap"
+import { Jumbotron, Row, Col, Container, Form } from "react-bootstrap"
 import './offers-page.component.css';
 
 
@@ -80,10 +80,73 @@ class OffersPage extends React.Component {
 
     render() {
         return (
+            // <div className='App'>
+            //     <div class="container-fluid justify-content-center filter-list">
+            //         <Row>
+            //             <Col>
+            //                 <Multiselect className="filter" data={ED_LEVELS} textField={item => item.name}
+            //                     placeholder='All Education Levels'
+            //                     valueField={item => item.value}
+            //                     onChange={value => this.setState((value.length > 0) ?
+            //                         { ed_levels: value } : { ed_levels: ED_LEVELS }, () => console.log(this.state))} />
+            //             </Col>
+            //             <Col>
+            //                 <Multiselect className="filter" data={JOB_TITLES} textField={item => item.name}
+            //                     placeholder='All Job Titles'
+            //                     valueField={item => item.value}
+            //                     onChange={value => this.setState((value.length > 0) ?
+            //                         { job_titles: value } : { job_titles: JOB_TITLES }, () => console.log(this.state))} />
+            //             </Col>
+            //         </Row>
+            //         <Row>
+            //             <Col>
+            //                 <Multiselect className="filter" data={NEGOTIATED} textField={item => item.name}
+            //                     placeholder='All Negotiation Statuses'
+            //                     valueField={item => item.value}
+            //                     onChange={value => this.setState((value.length > 0) ?
+            //                         { negotiated: value } : { negotiated: NEGOTIATED }, () => console.log(this.state))} />
+            //             </Col>
+            //             <Col>
+            //                 <Multiselect className="filter" data={COMPANY_SIZES} textField={item => item.name}
+            //                     placeholder='All Company Sizes'
+            //                     valueField={item => item.value}
+            //                     onChange={value => this.setState((value.length > 0) ?
+            //                         { company_sizes: value } : { company_sizes: COMPANY_SIZES }, () => console.log(this.state))} />
+            //             </Col>
+            //         </Row>
+            //     </div>
+            //     {
+            //         this.applyFilters(this.state.data).length < this.num_entries_needed ?
+
+            //             <SorryMessage />
+            //             :
+
+            //             <div>
+            //                 <div class="container-fluid justify-content-center">
+            //                     <Row>
+            //                         <Col>
+            //                             <Card field='salary' data={this.applyFilters(this.state.data)}
+            //                                 title='Base Salary' />
+            //                         </Col>
+            //                         <Col >
+            //                             <Card field='equity' data={this.applyFilters(this.state.data)}
+            //                                 title='Equity' />
+            //                         </Col>
+            //                         <Col >
+            //                             <Card border="info" field='one_time' data={this.applyFilters(this.state.data)}
+            //                                 title='One-Time Bonuses' />
+            //                         </Col>
+            //                     </Row>
+            //                 </div>
+            //             </div>
+            //     }
+
+            // </div>
             <div className='App'>
-                <div class="container-fluid justify-content-center">
-                    <Row>
+                <Form className='filter-list'>
+                    <Form.Row>
                         <Col>
+                            <Form.Label>Education Level</Form.Label>
                             <Multiselect className="filter" data={ED_LEVELS} textField={item => item.name}
                                 placeholder='All Education Levels'
                                 valueField={item => item.value}
@@ -91,30 +154,33 @@ class OffersPage extends React.Component {
                                     { ed_levels: value } : { ed_levels: ED_LEVELS }, () => console.log(this.state))} />
                         </Col>
                         <Col>
-                            <Multiselect data={JOB_TITLES} textField={item => item.name}
+                            <Form.Label>Job Title</Form.Label>
+                            <Multiselect className="filter" data={JOB_TITLES} textField={item => item.name}
                                 placeholder='All Job Titles'
                                 valueField={item => item.value}
                                 onChange={value => this.setState((value.length > 0) ?
                                     { job_titles: value } : { job_titles: JOB_TITLES }, () => console.log(this.state))} />
                         </Col>
-                    </Row>
-                    <Row>
+                    </Form.Row>
+                    <Form.Row>
                         <Col>
-                            <Multiselect data={NEGOTIATED} textField={item => item.name}
+                            <Form.Label>Negotiation Status</Form.Label>
+                            <Multiselect className="filter" data={NEGOTIATED} textField={item => item.name}
                                 placeholder='All Negotiation Statuses'
                                 valueField={item => item.value}
                                 onChange={value => this.setState((value.length > 0) ?
                                     { negotiated: value } : { negotiated: NEGOTIATED }, () => console.log(this.state))} />
                         </Col>
                         <Col>
-                            <Multiselect data={COMPANY_SIZES} textField={item => item.name}
+                            <Form.Label>Company Size</Form.Label>
+                            <Multiselect className="filter" data={COMPANY_SIZES} textField={item => item.name}
                                 placeholder='All Company Sizes'
                                 valueField={item => item.value}
                                 onChange={value => this.setState((value.length > 0) ?
                                     { company_sizes: value } : { company_sizes: COMPANY_SIZES }, () => console.log(this.state))} />
                         </Col>
-                    </Row>
-                </div>
+                    </Form.Row>
+                </Form>
                 {
                     this.applyFilters(this.state.data).length < this.num_entries_needed ?
 

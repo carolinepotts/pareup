@@ -5,9 +5,8 @@ import { Jumbotron } from 'react-bootstrap';
 
 const SorryMessage = () => {
     return (
-        <Jumbotron>
+        <Jumbotron style={{backgroundColor: '#28a745'}}>
             <h1 className='jumbo'>Sorry, there is not enough data to display</h1>
-
         </Jumbotron>
     )
 }
