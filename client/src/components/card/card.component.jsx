@@ -1,14 +1,41 @@
 import React from 'react';
 import './card.component.css';
+import { Card, Row, Col } from "react-bootstrap";
 
-const Card = ({ data, field }) => {
-    const stats = data.map((elem) => elem[field]).sort();
+const DisplayCard = ({ data, field, title }) => {
+    const stats = data.map((elem) => elem[field]).sort(function (a, b) { return a - b });
     const len = stats.length;
     const median = (stats[Math.floor((len - 1) / 2)] + stats[Math.ceil((len - 1) / 2)]) / 2
+    const per_25 = Math.floor(len * 0.25) == Math.ceil(len * 0.25) ? (stats[Math.floor(len * 0.25) - 1] + stats[Math.floor(len * 0.25)]) / 2 : stats[Math.ceil(len * 0.25) - 1]
+    const per_75 = Math.floor(len * 0.75) == Math.ceil(len * 0.75) ? (stats[Math.floor(len * 0.75) - 1] + stats[Math.floor(len * 0.75)]) / 2 : stats[Math.ceil(len * 0.75) - 1]
 
     return (
-        <h2> {field.split('_').map(word=>word.charAt(0).toUpperCase()+word.slice(1)).join(' ')}: {  median } </h2>
+        <Card className="text-center" text="black" style={{borderColor: '#1d60b8', borderWidth: '1px'}}>
+            {console.log(stats)}
+            <Card.Header style={{backgroundColor: '#1d60b8'}}>
+                <h2 style={{color: '#ffffff'}}>{title}</h2>
+            </Card.Header>
+            <Card.Body>
+                <Row>
+                <Col>
+                        <h2>  ${per_25 / 1000}k </h2>
+                        25th
+        
+                    </Col>
+                    <Col>
+                        <h2>  ${median / 1000}k </h2>
+                        Median
+        
+                    </Col>
+                    <Col>
+                        <h2>  ${per_75 / 1000}k </h2>
+                        75th
+        
+                    </Col>
+                </Row>
+            </Card.Body>
+        </Card>
     );
 }
 
-export default Card;
+export default DisplayCard;
