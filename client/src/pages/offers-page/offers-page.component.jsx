@@ -8,7 +8,7 @@ import COMPANY_SIZES from '../../fields/company_sizes';
 import 'react-widgets/dist/css/react-widgets.css'
 import Card from '../../components/card/card.component';
 import SorryMessage from '../../components/sorry_message/sorry_message.component';
-import { Jumbotron, Row, Col, Container, Form } from "react-bootstrap"
+import { Jumbotron, Row, Col, Container, Form, Button } from "react-bootstrap"
 import './offers-page.component.css';
 
 
@@ -24,6 +24,9 @@ class OffersPage extends React.Component {
             job_titles: JOB_TITLES,
             negotiated: NEGOTIATED,
             company_sizes: COMPANY_SIZES,
+            radius: 50,
+            zipcode_filter: 80230,
+            valid_zips: [],
             data: []
         }
 
@@ -77,71 +80,28 @@ class OffersPage extends React.Component {
         })
     };
 
+    findZipCodes = async (zip, radius) => {
+        console.log('findZipCodes called');
+        try {
+            let j = await fetch(`https://api.zip-codes.com/ZipCodesAPI.svc/1.0/FindZipCodesInRadius?zipcode=${zip}&minimumradius=0&maximumradius=${radius}&key=DEMOAPIKEY`);
+
+            let data = await j.json();
+            // .then(data => {return data.json()})
+            // .then(res=>console.log(res))
+            // .catch(error=>console.log(error));
+            // console.log('Printing state');
+            console.log(data)
+            this.setState({ valid_zips: data.DataList.map(entry => entry.Code) });
+            // console.log(this.state.valid_zips);
+        } catch (err) {
+            console.log(err);
+            this.setState({ valid_zips: [] });
+        }
+    }
+
 
     render() {
         return (
-            // <div className='App'>
-            //     <div class="container-fluid justify-content-center filter-list">
-            //         <Row>
-            //             <Col>
-            //                 <Multiselect className="filter" data={ED_LEVELS} textField={item => item.name}
-            //                     placeholder='All Education Levels'
-            //                     valueField={item => item.value}
-            //                     onChange={value => this.setState((value.length > 0) ?
-            //                         { ed_levels: value } : { ed_levels: ED_LEVELS }, () => console.log(this.state))} />
-            //             </Col>
-            //             <Col>
-            //                 <Multiselect className="filter" data={JOB_TITLES} textField={item => item.name}
-            //                     placeholder='All Job Titles'
-            //                     valueField={item => item.value}
-            //                     onChange={value => this.setState((value.length > 0) ?
-            //                         { job_titles: value } : { job_titles: JOB_TITLES }, () => console.log(this.state))} />
-            //             </Col>
-            //         </Row>
-            //         <Row>
-            //             <Col>
-            //                 <Multiselect className="filter" data={NEGOTIATED} textField={item => item.name}
-            //                     placeholder='All Negotiation Statuses'
-            //                     valueField={item => item.value}
-            //                     onChange={value => this.setState((value.length > 0) ?
-            //                         { negotiated: value } : { negotiated: NEGOTIATED }, () => console.log(this.state))} />
-            //             </Col>
-            //             <Col>
-            //                 <Multiselect className="filter" data={COMPANY_SIZES} textField={item => item.name}
-            //                     placeholder='All Company Sizes'
-            //                     valueField={item => item.value}
-            //                     onChange={value => this.setState((value.length > 0) ?
-            //                         { company_sizes: value } : { company_sizes: COMPANY_SIZES }, () => console.log(this.state))} />
-            //             </Col>
-            //         </Row>
-            //     </div>
-            //     {
-            //         this.applyFilters(this.state.data).length < this.num_entries_needed ?
-
-            //             <SorryMessage />
-            //             :
-
-            //             <div>
-            //                 <div class="container-fluid justify-content-center">
-            //                     <Row>
-            //                         <Col>
-            //                             <Card field='salary' data={this.applyFilters(this.state.data)}
-            //                                 title='Base Salary' />
-            //                         </Col>
-            //                         <Col >
-            //                             <Card field='equity' data={this.applyFilters(this.state.data)}
-            //                                 title='Equity' />
-            //                         </Col>
-            //                         <Col >
-            //                             <Card border="info" field='one_time' data={this.applyFilters(this.state.data)}
-            //                                 title='One-Time Bonuses' />
-            //                         </Col>
-            //                     </Row>
-            //                 </div>
-            //             </div>
-            //     }
-
-            // </div>
             <div className='App'>
                 <Form className='filter-list'>
                     <Form.Row>
@@ -180,6 +140,36 @@ class OffersPage extends React.Component {
                                     { company_sizes: value } : { company_sizes: COMPANY_SIZES }, () => console.log(this.state))} />
                         </Col>
                     </Form.Row>
+                    <Form.Row style={{ marginTop: '5px' }}>
+                        <Col>
+                            <Form.Label className="mt-auto">Show companies within</Form.Label>
+                            <input
+                                className="mt-auto"
+                                type="text"
+                                style={{ width: '40px', marginLeft: '10px', marginRight: '10px', borderRadius: '5px', borderWidth: '1px', height: '45px', textAlign: 'center' }}
+                                onChange={(e) => this.setState({ radius: e.target.value })}
+                                placeholder="#"
+                            />
+
+                            <Form.Label>miles of the zipcode</Form.Label>
+                            <input
+                                className="mt-auto"
+                                type="text"
+                                style={{ width: '100px', marginLeft: '10px', marginRight: '10px', borderRadius: '5px', borderWidth: '1px', height: '45px', textAlign: 'center' }}
+                                onChange={(e) => this.setState({ zipcode_filter: e.target.value })}
+                                placeholder="zipcode"
+                            />
+                        </Col>
+                        <Col>
+                            <Button onClick={(e) => {
+                                e.preventDefault();
+                                this.findZipCodes(this.state.zipcode_filter, this.state.radius).then(console.log("finished"))
+                            }}
+                                style={{ backgroundColor: '#1d60b8', borderColor: '#1d60b8', fontSize: '20px' }}>
+                                View Offer Statistics
+                                        </Button>
+                        </Col>
+                    </Form.Row>
                 </Form>
                 {
                     this.applyFilters(this.state.data).length < this.num_entries_needed ?
@@ -188,7 +178,7 @@ class OffersPage extends React.Component {
                         :
 
                         <div>
-                            <div class="container-fluid justify-content-center">
+                            <div className="container-fluid justify-content-center">
                                 <Row>
                                     <Col>
                                         <Card field='salary' data={this.applyFilters(this.state.data)}
@@ -206,10 +196,11 @@ class OffersPage extends React.Component {
                             </div>
                         </div>
                 }
-
             </div>
         );
     }
 }
+
+
 
 export default OffersPage;

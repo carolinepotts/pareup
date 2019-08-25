@@ -1,19 +1,18 @@
 .filter {
     align-self: center;
     margin-bottom: 20px;
+    overscroll-behavior-y: scroll;
     /* margin-top: 20px; */
     /* color: violet; */
     /* background-color: violet; */
 }
 
 .filter-list {
-    margin-bottom: 7%;
+    margin-bottom: 3%;
     font-size: 20px;
+    overscroll-behavior-y: scroll;
 }
 
-.rw-widget .rw-input {
-    color: violet;
-}
 
 .rw-multiselect-taglist {
     display: inline-block; 
