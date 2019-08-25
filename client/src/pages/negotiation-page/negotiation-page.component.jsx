@@ -1,5 +1,8 @@
 import React from 'react';
 import Image from 'react-bootstrap/Image';
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import { MDBContainer } from 'mdbreact'
 import ada_photo from '../../assets/ada_headshot_square.jpg';
 
 import './negotiation-page.component.css';
@@ -14,9 +17,6 @@ class NegotiationPage extends React.Component {
             <div>
                 <h1> 10 Ways to Negotiate Your Best Offer </h1>
                 <h4> Not sure what to do or say when negotiating?  Check out these helpful tips from Ada Gregory! </h4>
-
-                
-                <i>Ada Gregory is the Associate Director of the Kenan Institute for Ethics at Duke.  Ada graduated from Duke (BA/MA) and went on to work at the state and local levels for 20 years influencing policy and practice related to victims’ rights, violence against women, and criminal justice reform. She returned to Duke in 2006 and worked in several capacities, including as director of the Duke Women’s Center and chief administrator for the university’s signature institutes and initiatives, before joining the Kenan Institute for Ethics in 2018.</i>
                 <ol>
                     <li> <b>NEVER</b> give the first number – counter, deflect, delay or be non-specific.</li>
                     <ul>
@@ -49,7 +49,17 @@ class NegotiationPage extends React.Component {
                     <li>Negotiate for and consider the <b>ENTIRE</b> offer package – salary + benefits + professional opportunities (training, projects, travel, network, mentors, etc.)</li>
                     <li>Get everything in writing!</li>
                 </ol>
-                <Image src={ada_photo} width="200px" roundedCircle />
+                <MDBContainer className="align-middle">
+                    <Row>
+                        <Col lg="3">
+                            <Image src={ada_photo} width="200px" roundedCircle />
+                        </Col>
+                        <Col lg="9">
+                            <br></br>
+                            <i>Ada Gregory is the Associate Director of the Kenan Institute for Ethics at Duke.  Ada graduated from Duke (BA/MA) and went on to work at the state and local levels for 20 years influencing policy and practice related to victims’ rights, violence against women, and criminal justice reform. She returned to Duke in 2006 and worked in several capacities, including as director of the Duke Women’s Center and chief administrator for the university’s signature institutes and initiatives, before joining the Kenan Institute for Ethics in 2018.</i>
+                        </Col>
+                    </Row>
+                </MDBContainer>
             </div>
         )
     }
