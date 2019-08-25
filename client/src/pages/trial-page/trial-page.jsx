@@ -228,13 +228,13 @@ class TrialPage extends React.Component {
                 </div>
                 <div>
                     <form>
-                        <select name="country" class="countries order-alpha presel-US" id="countryId">
+                        <select name="country" className="countries order-alpha presel-US" id="countryId">
                             <option value="">Select Country</option>
                         </select>
-                        <select name="state" class="states order-alpha" id="stateId">
+                        <select name="state" className="states order-alpha" id="stateId">
                             <option value="">Select State</option>
                         </select>
-                        <select name="city" class="cities order-alpha" id="cityId">
+                        <select name="city" className="cities order-alpha" id="cityId">
                             <option value="">Select City</option>
                         </select>
                         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -250,17 +250,7 @@ class TrialPage extends React.Component {
                         value={region}
                         onChange={(val) => this.selectRegion(val)} />
                 </div>
-                <div style={{ padding: '10px' }}>
-                    <input
-                        type="text"
-                        style={{ width: '200px' }}
-                        onChange={(e) => this.setState({ zipcode_filter: e.target.value })}
-                        placeholder="zipcode"
-                    />
-                    <button onClick={() => findZipCodes(this.state.zipcode_filter, this.state.radius)}>
-                        FIND
-              </button>
-                </div>
+                
                 <div style={{ padding: '10px' }}>
                     <input
                         type="number"

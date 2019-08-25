@@ -7,42 +7,43 @@ import WelcomePage from './pages/welcome-page/welcome-page.component';
 import NegotiationPage from './pages/negotiation-page/negotiation-page.component';
 import SurveyPage from './pages/survey-page/survey-page.component';
 import './css/stylesheet.css';
+import './App.css';
 
 class App extends Component {
-  // initialize our state
+    // initialize our state
 
 
-  // here is our UI
-  // it is easy to understand their functions when you
-  // see them render into our screen
-  render() {
-      return (
-          <div>
-              <div>
-                  <link
-                      rel="stylesheet"
-                      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-                      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-                      crossOrigin="anonymous"
-                  />
-              </div>
+    // here is our UI
+    // it is easy to understand their functions when you
+    // see them render into our screen
+    render() {
+        return (
+            <div className='all'>
+                <div>
+                    <link
+                        rel="stylesheet"
+                        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+                        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+                        crossOrigin="anonymous"
+                    />
+                </div>
 
-              <div>
-                  <NavBar/>
+                <div>
+                    <NavBar />
 
-                  <br/>
-
-                  <Switch>
-                      <Route exact={true} path='/' component={WelcomePage} />
-                      <Route exact={true} path='/offers' component={OffersPage} />
-                      <Route exact={true} path='/negotiation-tips' component={NegotiationPage} />
-                      <Route exact={true} path='/survey' component={SurveyPage} />
-                      <Route exact={true} path='/trial' component={TrialPage} />
-                  </Switch>
-              </div>
-          </div>
-    );
-  }
+                    <div className='display-page'>
+                        <Switch>
+                            <Route exact={true} path='/' component={WelcomePage} />
+                            <Route exact={true} path='/offers' component={OffersPage} />
+                            <Route exact={true} path='/negotiation-tips' component={NegotiationPage} />
+                            <Route exact={true} path='/survey' component={SurveyPage} />
+                            <Route exact={true} path='/trial' component={TrialPage} />
+                        </Switch>
+                    </div>
+                </div>
+            </div>
+        );
+    }
 }
 
 export default App;

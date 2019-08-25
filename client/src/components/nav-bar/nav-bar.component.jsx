@@ -15,11 +15,11 @@ class NavBar extends React.Component {
 
     render() {
         return (
-            <Navbar className="nav-bar pareup-blue-bg" expand="lg">
+            <Navbar className="nav-bar pareup-blue-bg mt-auto mb-auto" expand="lg">
                 <Col sm="auto">
                     <Link className="nav-bar-link logo no-effect-on-hover" to="/">PareUp</Link>
                 </Col>
-                <div className="vr"> </div>
+                {/* <div className="vr"> </div> */}
                 <Col sm="auto">
                     <Link className="nav-bar-link bold-on-hover-text" to="/offers">Browse Offers</Link>
                 </Col>

@@ -1,1 +1,29 @@
-/* import React, {Component} */
+.filter {
+    align-self: center;
+    margin-bottom: 20px;
+    overscroll-behavior-y: scroll;
+    /* margin-top: 20px; */
+    /* color: violet; */
+    /* background-color: violet; */
+}
+
+.filter-list {
+    margin-bottom: 3%;
+    font-size: 20px;
+    overscroll-behavior-y: scroll;
+}
+
+
+.rw-multiselect-taglist {
+    display: inline-block; 
+    /* vertical-align: 0;  */
+    vertical-align: middle;
+}
+
+.rw-widget-input {
+    align-items: center;
+}
+
+.rw-multiselect-tag {
+    margin: 5px;
+}
