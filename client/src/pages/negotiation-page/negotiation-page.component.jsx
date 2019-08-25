@@ -16,7 +16,7 @@ class NegotiationPage extends React.Component {
         return (
             <div>
                 <h1> 10 Ways to Negotiate Your Best Offer </h1>
-                <h4> Not sure what to do or say when negotiating?  Check out these helpful tips from Ada Gregory! </h4>
+                <h4> Not sure what to do or say when negotiating?  Check out these helpful tips! </h4>
                 <ol>
                     <li> <b>NEVER</b> give the first number – counter, deflect, delay or be non-specific.</li>
                     <ul>
