@@ -1,6 +1,6 @@
 import React from 'react';
 // import Multiselect from 'multiselect-dropdown-react';
-import { Multiselect } from 'react-widgets'
+import { Multiselect } from 'react-widgets';
 import ED_LEVELS from '../../fields/ed_levels';
 import JOB_TITLES from '../../fields/job_titles';
 import NEGOTIATED from '../../fields/negotiated';

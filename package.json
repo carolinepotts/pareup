@@ -13,14 +13,19 @@
     "axios": "^0.19.0",
     "concurrently": "^4.0.1",
     "dotenv": "^8.0.0",
+    "faker": "^4.1.0",
+    "lodash": "^4.17.15",
+    "mdbreact": "^4.19.1",
     "multiselect-dropdown-react": "^1.0.5",
     "react": "^16.8.6",
     "react-bootstrap": "^1.0.0-beta.10",
     "react-country-region-selector": "^1.4.3",
     "react-dom": "^16.8.6",
+    "react-dropdown-select": "^3.5.1",
     "react-google-places-suggest": "^3.8.0",
     "react-router-dom": "^5.0.1",
     "react-scripts": "^3.0.1",
-    "react-widgets": "^4.4.11"
+    "react-widgets": "^4.4.11",
+    "semantic-ui-react": "^0.88.1"
   }
 }
