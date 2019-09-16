@@ -6,7 +6,7 @@ import { Multiselect } from 'react-widgets';
 import STATE_CITY_LIST from '../../fields/states_cities'
 import { DropdownList } from 'react-widgets'
 import STATES from '../../fields/states';
-import DATA from '../../fields/data';
+// import DATA from '../../fields/data';
 import Select from 'react-dropdown-select'
 // import faker from 'faker'
 // import _ from 'lodash'
@@ -14,12 +14,13 @@ import Select from 'react-dropdown-select'
 import { Dropdown } from 'semantic-ui-react'
 import { Container, Row, Col } from 'react-bootstrap';
 
-import DropdownExampleSearchSelectionTwo from './dropdown'
+// import DropdownExampleSearchSelectionTwo from './dropdown'
 import LocationSelector from '../../components/location_selector/location_selector.component';
 
 
 class TrialPage extends React.Component {
     state = {
+        // Brooke: selected_state and selected_city need to be added to the state on the survey page
         selected_state: 'Alabama',
         selected_city: 'Abanda',
         selected_lat: 0,
@@ -310,18 +311,21 @@ class TrialPage extends React.Component {
 
                     />
                 </div> */}
-                <div>
+                {/* <div>
                     <h1>Look here</h1>
                     <Dropdown placeholder='State' search selection options={STATES.map(dat => ({ key: dat, value: dat, text: dat }))} />
                 </div>
                 <div>
                     <h1>Look here</h1>
                     <Dropdown placeholder='City' search selection options={STATE_CITY_LIST['Washington'].map(dat => ({ key: dat.city, value: dat.city, text: dat.city }))} />
-                </div>
+                </div> */}
 
-                <div>
+                {/* <div>
                     <LocationSelector />
-                </div>
+                </div> */}
+
+                {/* Brooke - this div is the location selector - 
+                ignore the stuff above it (it's similar but harder to save the values in the right way ) */}
                 <div>
                     <Container>
                         <Row>
