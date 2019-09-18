@@ -2,6 +2,8 @@ import React from 'react';
 import Navbar from "react-bootstrap/Navbar";
 import Link from "react-router-dom/Link";
 import Col from "react-bootstrap/Col";
+import Helmet from "react-helmet"
+import Headroom from "react-headroom"
 
 import './nav-bar.components.css';
 
@@ -15,7 +17,9 @@ class NavBar extends React.Component {
 
     render() {
         return (
-            <Navbar className="nav-bar pareup-blue-bg mt-auto mb-auto" expand="lg">
+            // <Headroom>
+            <Navbar fixed="top" style={{ backgroundColor: '#65CCB8' }} className="nav-bar pareup-blue-bg mt-auto mb-auto" expand="lg">
+                {/* <Helmet bodyAttributes={{style: 'background-color: #65CCB8'}}/> */}
                 <Col sm="auto">
                     <Link className="nav-bar-link logo no-effect-on-hover" to="/">PareUp</Link>
                 </Col>
@@ -33,6 +37,7 @@ class NavBar extends React.Component {
                     <Link className="nav-bar-link bold-on-hover-text" to="/negotiation-tips">Negotiation Tips</Link>
                 </Col>
             </Navbar>
+            // {/* </Headroom> */}
         )
     }
 }

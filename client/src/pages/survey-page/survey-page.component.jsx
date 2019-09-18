@@ -49,7 +49,7 @@ class SurveyPage extends React.Component {
 
     render() {
         return (
-            <div className='App'>
+            <div className='App' style={{ paddingTop: 75 }} >
                 <h1>Survey Page - Enter your offer info here!</h1>
                 <Form className='filter-list'>
                     <Form.Row>

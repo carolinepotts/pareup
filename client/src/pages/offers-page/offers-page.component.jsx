@@ -102,7 +102,8 @@ class OffersPage extends React.Component {
 
     render() {
         return (
-            <div className='App'>
+            <div style={{ paddingTop: 75 }} className='App'>
+                <h1> <span style={{ color: `#007788` }}>fgggggggghggggggggggggggggggggggggggggg</span></h1>
                 <Form className='filter-list'>
                     <Form.Row>
                         <Col>
@@ -161,13 +162,13 @@ class OffersPage extends React.Component {
                             />
                         </Col>
                         <Col>
-                            <Button onClick={(e) => {
+                            {/* <Button onClick={(e) => {
                                 e.preventDefault();
                                 this.findZipCodes(this.state.zipcode_filter, this.state.radius).then(console.log("finished"))
                             }}
-                                style={{ backgroundColor: '#1d60b8', borderColor: '#1d60b8', fontSize: '20px' }}>
+                                style={{ backgroundColor: '#007788', borderColor: '#007788', fontSize: '20px' }}>
                                 View Offer Statistics
-                                        </Button>
+                                        </Button> */}
                         </Col>
                     </Form.Row>
                 </Form>

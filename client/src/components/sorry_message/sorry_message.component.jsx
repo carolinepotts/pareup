@@ -5,8 +5,8 @@ import './sorry_message.component.css';
 
 const SorryMessage = () => {
     return (
-        <Jumbotron className="jumbo" style={{backgroundColor: '#e8f2ff'}}>
-            <h1>Sorry, there is not enough data to display</h1>
+        <Jumbotron className="jumbo" style={{backgroundColor: `#65CCB8`}}>
+            <h1 style={{color:`#FFFFFF`}}>Sorry, there is not enough data to display</h1>
         </Jumbotron>
     )
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
+import { StickyContainer, Sticky } from 'react-sticky';
 import TrialPage from './pages/trial-page/trial-page';
 import NavBar from './components/nav-bar/nav-bar.component';
 import OffersPage from './pages/offers-page/offers-page.component';
@@ -29,8 +30,10 @@ class App extends Component {
                 </div>
 
                 <div>
+                    {/* <StickyContainer>
+                        <Sticky topOffset={-30}>{({ style }) => <h1 style={style}>Sticky element</h1>}</Sticky>
+                    </StickyContainer> */}
                     <NavBar />
-
                     <div className='display-page'>
                         <Switch>
                             <Route exact={true} path='/' component={WelcomePage} />

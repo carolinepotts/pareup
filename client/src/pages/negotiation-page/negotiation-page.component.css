@@ -1,0 +1,62 @@
+/* html,
+body {
+  margin: 0;
+  font-family: monospace;
+  font-weight: 700;
+  font-size: 25px;
+  cursor: default;
+}
+#container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.tip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  border-top: 2px solid blue;
+  border-bottom: 2px solid blue;
+  color: blue;
+  background-color: white;
+}
+
+.tip1 {
+    height: 40%;
+    min-height: 40%;
+  } */
+
+/* 
+.custom-trigger {
+    transition: background-color 0.3s ease-in-out;
+}
+.custom-trigger--0{
+    background-color: hsl(0,100%,70%);
+}
+.custom-trigger--1{
+    background-color: hsl(120,100%,70%);
+}
+.custom-trigger--2{
+    background-color: hsl(240,100%,70%);
+}
+.custom-trigger--3{
+    background-color: hsl(360,100%,70%);
+} */
+
+/* #container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  } */
