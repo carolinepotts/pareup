@@ -10,7 +10,20 @@ import Card from '../../components/card/card.component';
 import SorryMessage from '../../components/sorry_message/sorry_message.component';
 import { Jumbotron, Row, Col, Container, Form, Button } from "react-bootstrap"
 import './offers-page.component.css';
+import STATE_CITY_LIST from '../../fields/states_cities';
+import STATES from '../../fields/states';
+import { Dropdown } from 'semantic-ui-react'
 
+
+function calcDist(lat1,lon1,lat2,lon2){
+    var a1 = lat1*Math.PI/180;
+    var a2 = lat2*Math.PI/180;
+    var del_lon = (lon2-lon1)*Math.PI/180;
+    var R = 6371e3; // gives d in metres
+    var d = Math.acos( Math.sin(a1)*Math.sin(a2) + Math.cos(a1)*Math.cos(a2) * Math.cos(del_lon) ) * R;
+    var miles = d/1609.344;
+    return miles;
+}
 
 class OffersPage extends React.Component {
     constructor(props) {
@@ -24,9 +37,13 @@ class OffersPage extends React.Component {
             job_titles: JOB_TITLES,
             negotiated: NEGOTIATED,
             company_sizes: COMPANY_SIZES,
-            radius: 50,
-            zipcode_filter: 80230,
-            valid_zips: [],
+            radius: 100000,
+            selected_state: "Alabama",
+            selected_city: "Abanda",
+            selected_lat: 0,
+            selected_long: 0,
+            // zipcode_filter: 80230,
+            // valid_zips: [],
             data: []
         }
 
@@ -76,7 +93,8 @@ class OffersPage extends React.Component {
             return (this.state.ed_levels.map(item => item.name).includes(doc.ed_level) &&
                 this.state.job_titles.map(item => item.name).includes(doc.job_title) &&
                 this.state.negotiated.map(item => item.name).includes(doc.negotiated) &&
-                this.state.company_sizes.map(item => item.name).includes(doc.company_size))
+                this.state.company_sizes.map(item => item.name).includes(doc.company_size))//&&
+                //calcDist(doc.lat, doc.long, this.state.selected_lat, this.state.selected_long)<=this.state.radius
         })
     };
 
@@ -102,9 +120,13 @@ class OffersPage extends React.Component {
 
     render() {
         return (
-            <div style={{ paddingTop: 75 }} className='App'>
-                <h1> <span style={{ color: `#007788` }}>fgggggggghggggggggggggggggggggggggggggg</span></h1>
-                <Form className='filter-list'>
+            <div style={{ paddingTop: 70 }} className='App'>
+                <h1 style={{ color: `#007788`, textAlign:"left", display:"inline"}}> Filter Results</h1>
+                <h4 style={{ color: `#007788`, textAlign:"left", display: "inline"}}> <i>using the dropdown menus below</i></h4><br/>
+                {/* <h3 style={{ color: `#007788`, textAlign:"center"}}>View median, 25th percentile, and 75th percentile of offers.  Use the dropdowns below to filter results.</h3> */}
+                <br />
+
+                <Form className='filter-list '>
                     <Form.Row>
                         <Col>
                             <Form.Label>Education Level</Form.Label>
@@ -142,7 +164,8 @@ class OffersPage extends React.Component {
                         </Col>
                     </Form.Row>
                     <Form.Row style={{ marginTop: '5px' }}>
-                        <Col>
+                        <Col lg={1}/>
+                        <Col lg={3.5}>
                             <Form.Label className="mt-auto">Show companies within</Form.Label>
                             <input
                                 className="mt-auto"
@@ -152,26 +175,48 @@ class OffersPage extends React.Component {
                                 placeholder="#"
                             />
 
-                            <Form.Label>miles of the zipcode</Form.Label>
-                            <input
+
+                            <Form.Label>miles of</Form.Label>
+                        </Col>
+                        <Col lg={3.25}>
+                            <Dropdown placeholder='State' search selection options={STATES.map(dat => ({ key: dat, value: dat, text: dat }))}
+                                onChange={(event, val) => this.setState({ selected_state: val.value }, () => console.log(val.value))} />
+                        </Col>
+                        <Col lg={3.25}>
+                            <Dropdown placeholder='City' search selection options={STATE_CITY_LIST[this.state.selected_state].map(dat => ({ key: dat.city, value: dat.city, text: dat.city }))}
+                                onChange={(event, val) => this.setState({
+                                    selected_city: val.value,
+                                    selected_lat: STATE_CITY_LIST[this.state.selected_state].filter(function getSelCityObject(object) {
+                                        return object.city == val.value
+                                    })[0].lat,
+                                    selected_long: STATE_CITY_LIST[this.state.selected_state].filter(function getSelCityObject(object) {
+                                        return object.city == val.value
+                                    })[0].long
+                                }, () => console.log(this.state))} />
+
+                        </Col>
+                        <Col lg={1}/>
+                        {/* <input
                                 className="mt-auto"
                                 type="text"
                                 style={{ width: '100px', marginLeft: '10px', marginRight: '10px', borderRadius: '5px', borderWidth: '1px', height: '45px', textAlign: 'center' }}
                                 onChange={(e) => this.setState({ zipcode_filter: e.target.value })}
                                 placeholder="zipcode"
-                            />
-                        </Col>
-                        <Col>
-                            {/* <Button onClick={(e) => {
+                            /> */}
+
+
+                        {/* <Button onClick={(e) => {
                                 e.preventDefault();
                                 this.findZipCodes(this.state.zipcode_filter, this.state.radius).then(console.log("finished"))
                             }}
                                 style={{ backgroundColor: '#007788', borderColor: '#007788', fontSize: '20px' }}>
                                 View Offer Statistics
                                         </Button> */}
-                        </Col>
+
                     </Form.Row>
                 </Form>
+                <h1 style={{ color: `#007788`, textAlign:"left", display: "inline"}}> Offer Statistics</h1>
+                <h4 style={{ color: `#007788`, textAlign:"left", display: "inline"}}> <i>25th percentile, median, 75th percentile</i></h4><br/><br/>
                 {
                     this.applyFilters(this.state.data).length < this.num_entries_needed ?
 
@@ -197,7 +242,7 @@ class OffersPage extends React.Component {
                             </div>
                         </div>
                 }
-            </div>
+            </div >
         );
     }
 }

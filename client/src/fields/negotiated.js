@@ -1,10 +1,10 @@
 const NEGOTIATED = [
     {
-        name: 'Yes',
+        name: 'Negotiated Offers',
         value: 'Yes'
     },
     {
-        name: 'No',
+        name: 'Non-negotiated Offers',
         value: 'No'
     }
 ];

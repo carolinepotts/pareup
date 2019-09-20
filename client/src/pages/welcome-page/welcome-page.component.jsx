@@ -19,7 +19,7 @@ class WelcomePage extends React.Component {
                     <Col md={2} /> {/* this is just an offset to center the column below. Note a row will add up to 12 total. */}
                     <Col md={8} className="text-center">
                         <h1> Welcome to <span style={{ color: `#007788` }}>PareUp</span></h1>
-                        <h4> <i><span style={{ color: `#007788` }}>Transparency, Together</span></i></h4>
+                        <h4> <i><span style={{ color: `#65CCA0` }}>Transparency, Together</span></i></h4>
                         <p>
                             <br/>
                             If you don't know what you should be paid, negotiating your best offer is hard.  <br/>

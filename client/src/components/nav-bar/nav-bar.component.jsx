@@ -18,7 +18,7 @@ class NavBar extends React.Component {
     render() {
         return (
             // <Headroom>
-            <Navbar fixed="top" style={{ backgroundColor: '#65CCB8' }} className="nav-bar pareup-blue-bg mt-auto mb-auto" expand="lg">
+            <Navbar fixed="top" style={{ backgroundColor: '#55D2D1' }} className="nav-bar pareup-blue-bg mt-auto mb-auto" expand="lg">
                 {/* <Helmet bodyAttributes={{style: 'background-color: #65CCB8'}}/> */}
                 <Col sm="auto">
                     <Link className="nav-bar-link logo no-effect-on-hover" to="/">PareUp</Link>
