@@ -11,24 +11,24 @@ const DisplayCard = ({ data, field, title }) => {
 
     return (
         <Card className="text-center" text="black" style={{borderColor: '#65CCA0', borderWidth: '1px'}}>
-            {console.log(stats)}
+            {/* {console.log(stats)} */}
             <Card.Header style={{backgroundColor: '#65CCA0'}}>
                 <h2 style={{color: '#FFFFFF'}}>{title}</h2>
             </Card.Header>
             <Card.Body>
                 <Row>
                 <Col>
-                        <h2>  ${per_25 / 1000}k </h2>
+                        <h2>  ${Math.round(per_25 / 1000)}k </h2>
                         25th
         
                     </Col>
                     <Col>
-                        <h2>  ${median / 1000}k </h2>
+                        <h2>  ${Math.round(median / 1000)}k </h2>
                         Median
         
                     </Col>
                     <Col>
-                        <h2>  ${per_75 / 1000}k </h2>
+                        <h2>  ${Math.round(per_75 / 1000)}k </h2>
                         75th
         
                     </Col>
