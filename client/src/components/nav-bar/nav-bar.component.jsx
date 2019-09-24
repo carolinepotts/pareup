@@ -1,5 +1,6 @@
 import React from 'react';
 import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
 import Link from "react-router-dom/Link";
 import Col from "react-bootstrap/Col";
 import logo from '../../assets/logo.png';
@@ -22,24 +23,26 @@ class NavBar extends React.Component {
                         <img
                             src={logo2}
                             width="180"
-                            
+
                             className="d-inline-block align-top"
                             alt="PareUp Logo"
                         />
                     </Link >
                 </Col>
-                <Col sm="auto">
-                    <Link className="nav-bar-link bold-on-hover-text" to="/offers">Browse Offers</Link>
-                </Col>
-                <Col sm="auto">
-                    <Link className="nav-bar-link bold-on-hover-text" to="/survey">Submit Offer</Link>
-                </Col>
-                <Col sm="auto">
-                    <Link className="nav-bar-link bold-on-hover-text" to="/trial">Trial Page</Link>
-                </Col>
-                <Col sm="auto">
-                    <Link className="nav-bar-link bold-on-hover-text" to="/negotiation-tips">Negotiation Tips</Link>
-                </Col>
+                <Nav className="ml-auto">
+                    <Col sm="auto">
+                        <Link className="nav-bar-link" to="/offers">Browse Offers</Link>
+                    </Col>
+                    <Col sm="auto">
+                        <Link className="nav-bar-link" to="/survey">Submit Offer</Link>
+                    </Col>
+                    <Col sm="auto">
+                        <Link className="nav-bar-link" to="/trial">Trial Page</Link>
+                    </Col>
+                    <Col sm="auto">
+                        <Link className="nav-bar-link" to="/negotiation-tips">Negotiation Tips</Link>
+                    </Col>
+                </Nav>
             </Navbar>
         )
     }

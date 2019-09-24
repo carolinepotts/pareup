@@ -48,10 +48,6 @@ class OffersPage extends React.Component {
             selected_city: "Abanda",
             selected_lat: 0,
             selected_long: 0,
-            doc_lat: 0,
-            doc_long: 0,
-            // zipcode_filter: 80230,
-            // valid_zips: [],
             data: []
         }
 
