@@ -4,7 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"cd backend && node server.js\" \"cd client && npm start\""
+    "start": "concurrently \"cd backend && node server.js\" \"cd client && npm start\"",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +20,7 @@
     "concurrently": "^4.0.1",
     "dotenv": "^8.0.0",
     "faker": "^4.1.0",
+    "gh-pages": "^2.1.1",
     "lodash": "^4.17.15",
     "mdbreact": "^4.19.1",
     "multiselect-dropdown-react": "^1.0.5",

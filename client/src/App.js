@@ -27,7 +27,7 @@ class App extends Component {
                         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
                         crossOrigin="anonymous"
                     />
-                    <link href="https://fonts.googleapis.com/css?family=Lemon|Oleo+Script+Swash+Caps:700|Spicy+Rice&display=swap" rel="stylesheet"></link>
+                    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville|Lemon|Nunito|Oleo+Script+Swash+Caps:700|Spicy+Rice&display=swap" rel="stylesheet"></link>
                 </div>
 
                 <div>

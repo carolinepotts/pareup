@@ -2,9 +2,8 @@ import React from 'react';
 import Navbar from "react-bootstrap/Navbar";
 import Link from "react-router-dom/Link";
 import Col from "react-bootstrap/Col";
-import Helmet from "react-helmet"
-import Headroom from "react-headroom"
-
+import logo from '../../assets/logo.png';
+import logo2 from '../../assets/logo2.png';
 import './nav-bar.components.css';
 
 class NavBar extends React.Component {
@@ -17,13 +16,18 @@ class NavBar extends React.Component {
 
     render() {
         return (
-            // <Headroom>
             <Navbar fixed="top" style={{ backgroundColor: '#55D2D1' }} className="nav-bar pareup-blue-bg mt-auto mb-auto" expand="lg">
-                {/* <Helmet bodyAttributes={{style: 'background-color: #65CCB8'}}/> */}
                 <Col sm="auto">
-                    <Link className="nav-bar-link logo no-effect-on-hover" to="/">PareUp</Link>
+                    <Link to="/">
+                        <img
+                            src={logo2}
+                            width="180"
+                            
+                            className="d-inline-block align-top"
+                            alt="PareUp Logo"
+                        />
+                    </Link >
                 </Col>
-                {/* <div className="vr"> </div> */}
                 <Col sm="auto">
                     <Link className="nav-bar-link bold-on-hover-text" to="/offers">Browse Offers</Link>
                 </Col>
@@ -37,7 +41,6 @@ class NavBar extends React.Component {
                     <Link className="nav-bar-link bold-on-hover-text" to="/negotiation-tips">Negotiation Tips</Link>
                 </Col>
             </Navbar>
-            // {/* </Headroom> */}
         )
     }
 }
