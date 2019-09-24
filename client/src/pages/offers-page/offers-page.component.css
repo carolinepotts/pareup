@@ -8,6 +8,7 @@
 }
 
 .filter-list {
+    margin-top: -1%;
     margin-bottom: 3%;
     font-size: 20px;
     overscroll-behavior-y: scroll;

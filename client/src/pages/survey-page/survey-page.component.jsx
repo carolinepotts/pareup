@@ -27,7 +27,7 @@ class SurveyPage extends React.Component {
         }
     }
 
-    
+
     // our put method that uses our backend api
     // to create new query into our data base
     putDataToDB = ({ location, salary, internships, equity, signing_bonus }) => {
@@ -49,7 +49,7 @@ class SurveyPage extends React.Component {
 
     render() {
         return (
-            <div className='App'>
+            <div className='App' style={{ paddingTop: 75 }} >
                 <h1>Survey Page - Enter your offer info here!</h1>
                 <Form className='filter-list'>
                     <Form.Row>
@@ -111,11 +111,11 @@ class SurveyPage extends React.Component {
                         <Col>
                             <Button onClick={(e) => {
                                 e.preventDefault();
-                                this.findZipCodes(this.state.zipcode_filter, this.state.radius).then(console.log("finished"))
+                                // this.findZipCodes(this.state.zipcode_filter, this.state.radius).then(console.log("finished"))
                             }}
                                 style={{ backgroundColor: '#1d60b8', borderColor: '#1d60b8', fontSize: '20px' }}>
                                 Submit Offer Information
-                                    </Button>
+                            </Button>
                         </Col>
                     </Form.Row>
                 </Form>

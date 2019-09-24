@@ -10,25 +10,25 @@ const DisplayCard = ({ data, field, title }) => {
     const per_75 = Math.floor(len * 0.75) == Math.ceil(len * 0.75) ? (stats[Math.floor(len * 0.75) - 1] + stats[Math.floor(len * 0.75)]) / 2 : stats[Math.ceil(len * 0.75) - 1]
 
     return (
-        <Card className="text-center" text="black" style={{borderColor: '#1d60b8', borderWidth: '1px'}}>
-            {console.log(stats)}
-            <Card.Header style={{backgroundColor: '#1d60b8'}}>
-                <h2 style={{color: '#ffffff'}}>{title}</h2>
+        <Card className="text-center" text="black" style={{borderColor: '#65CCA0', borderWidth: '1px'}}>
+            {/* {console.log(stats)} */}
+            <Card.Header style={{backgroundColor: '#65CCA0'}}>
+                <h2 style={{color: '#FFFFFF'}}>{title}</h2>
             </Card.Header>
             <Card.Body>
                 <Row>
                 <Col>
-                        <h2>  ${per_25 / 1000}k </h2>
+                        <h2>  ${Math.round(per_25 / 1000)}k </h2>
                         25th
         
                     </Col>
                     <Col>
-                        <h2>  ${median / 1000}k </h2>
+                        <h2>  ${Math.round(median / 1000)}k </h2>
                         Median
         
                     </Col>
                     <Col>
-                        <h2>  ${per_75 / 1000}k </h2>
+                        <h2>  ${Math.round(per_75 / 1000)}k </h2>
                         75th
         
                     </Col>

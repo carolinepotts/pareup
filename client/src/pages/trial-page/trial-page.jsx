@@ -2,9 +2,29 @@ import React from 'react';
 import './trial-page.css';
 import { CountryDropdown, RegionDropdown, CountryRegionData } from 'react-country-region-selector';
 import axios from 'axios';
+import { Multiselect } from 'react-widgets';
+import STATE_CITY_LIST from '../../fields/states_cities'
+import { DropdownList } from 'react-widgets'
+import STATES from '../../fields/states';
+// import DATA from '../../fields/data';
+import Select from 'react-dropdown-select'
+// import faker from 'faker'
+// import _ from 'lodash'
+// import React from 'react'
+import { Dropdown } from 'semantic-ui-react'
+import { Container, Row, Col } from 'react-bootstrap';
+
+// import DropdownExampleSearchSelectionTwo from './dropdown'
+import LocationSelector from '../../components/location_selector/location_selector.component';
+
 
 class TrialPage extends React.Component {
     state = {
+        // Brooke: selected_state and selected_city need to be added to the state on the survey page
+        selected_state: 'Alabama',
+        selected_city: 'Abanda',
+        selected_lat: 0,
+        selected_long: 0,
         data: [],
         id: 0,
         location: "",
@@ -24,6 +44,8 @@ class TrialPage extends React.Component {
         radius: 30,
         valid_zips: []
     };
+
+
 
     selectCountry(val) {
         this.setState({ country: val });
@@ -250,7 +272,7 @@ class TrialPage extends React.Component {
                         value={region}
                         onChange={(val) => this.selectRegion(val)} />
                 </div>
-                
+
                 <div style={{ padding: '10px' }}>
                     <input
                         type="number"
@@ -259,6 +281,72 @@ class TrialPage extends React.Component {
                             this.setState({ radius: e.target.value })
                         }
                     />
+                </div>
+                <div>
+                    <DropdownList
+                        data={STATES}
+                        defaultValue={"Select a State"}
+                    />
+                </div>
+                <div>
+                    <DropdownList
+                        data={STATE_CITY_LIST['Washington'].map(dat => dat.city)}
+                        defaultValue={"Select a State"}
+                    />
+                </div>
+                <div>
+                    <Select
+                        options={STATE_CITY_LIST['Washington'].map(dat => ({ key: dat.city }))}
+                        placeholder={"Select a State"}
+                        onChange={(values) => console.log(values)}
+                    />
+                </div>
+                {/* <div>
+                    <Dropdown
+                        placeholder={"Select a City"}
+                        selection
+                        fluid
+                        search
+                        options={STATE_CITY_LIST['Washington'].map(dat => ({ key: dat.city, value: dat.city, text: dat.city }))}
+
+                    />
+                </div> */}
+                {/* <div>
+                    <h1>Look here</h1>
+                    <Dropdown placeholder='State' search selection options={STATES.map(dat => ({ key: dat, value: dat, text: dat }))} />
+                </div>
+                <div>
+                    <h1>Look here</h1>
+                    <Dropdown placeholder='City' search selection options={STATE_CITY_LIST['Washington'].map(dat => ({ key: dat.city, value: dat.city, text: dat.city }))} />
+                </div> */}
+
+                {/* <div>
+                    <LocationSelector />
+                </div> */}
+
+                {/* Brooke - this div is the location selector - 
+                ignore the stuff above it (it's similar but harder to save the values in the right way ) */}
+                <div>
+                    <Container>
+                        <Row>
+                            <Col>
+                                <Dropdown placeholder='State' search selection options={STATES.map(dat => ({ key: dat, value: dat, text: dat }))}
+                                    onChange={(event, val) => this.setState({ selected_state: val.value }, () => console.log(val.value))} />
+                            </Col>
+                            <Col>
+                                <Dropdown placeholder='City' search selection options={STATE_CITY_LIST[this.state.selected_state].map(dat => ({ key: dat.city, value: dat.city, text: dat.city }))}
+                                    onChange={(event, val) => this.setState({
+                                        selected_city: val.value,
+                                        selected_lat: STATE_CITY_LIST[this.state.selected_state].filter(function getSelCityObject(object) {
+                                            return object.city == val.value
+                                        })[0].lat,
+                                        selected_long: STATE_CITY_LIST[this.state.selected_state].filter(function getSelCityObject(object) {
+                                            return object.city == val.value
+                                        })[0].long
+                                    }, () => console.log(this.state))} />
+                            </Col>
+                        </Row>
+                    </Container>
                 </div>
             </div>
         );

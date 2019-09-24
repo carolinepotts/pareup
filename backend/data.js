@@ -5,11 +5,12 @@ const Schema = mongoose.Schema;
 const DataSchema = new Schema(
   {
     id: Number,
-    location: String,
+    negotiated: String,
     salary: Number,
-    internships: Number,
     equity: Number,
-    signing_bonus: Number
+    one_time: Number,
+    lat: Number,
+    long: Number
   },
   { timestamps: true }
 );
