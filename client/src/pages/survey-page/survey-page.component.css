@@ -1,4 +1,100 @@
+.form-container {
+	background-color: #c9e6ff;
+	border-style: solid;
+	border-radius: 20px;
+	/* color: #c9e6ff; font and border color*/
+	padding: 50px 100px;
+	position: absolute;
+	width: 80%;
+	margin: auto;
+	right: 0;
+	left: 0;
+	/* flex box to make spacing better?
+	display: flex;
+	flex-flow: row wrap;
+	flex-direction: row;
+	justify-content: space-around;
+	align-content: flex-left;
+	align-items: flex-left; */
+
+}
+
 .filter {
     color: black;
-    background-color: white;
+    background-color: none;
+    width: 75%;
+}
+
+.main-btn {
+	background-color: #1d60b8;
+	border-color: #1d60b8;
+	font-size: 30px;
+}
+
+.number-input {
+	border-radius: 5px;
+	border-style: solid;
+	padding: 5px 5px;
+	width: 75%;
+	height: 46.6px;
+}
+
+.text-input {
+	background-color: white;
+	border: none;
+	border-style: solid; 
+	border-radius: 5px;
+	padding: 5px 5px;
+	width: 75%;
+	height: 46.6px;
+}
+
+.text-input:focus {
+	outline: none;
+}
+
+.percent-input {
+	border-style: solid;
+	border-radius: 5px;
+	padding: 5px 5px;
+	width: 75%;
+	height: 46.6px;
+}
+
+.dropdown {
+	background-color: white;
+	border: none;
+	border-style: none none solid none !important; 
+	padding: 3px 5px;
+}
+
+.dropdown:focus {
+	outline: none;
+}
+
+.container {
+	display: flex;
+	flex-flow: row wrap;
+	flex-direction: row;
+	justify-content: space-around;
+	align-content: flex-center;
+	align-items: flex-center;
+	border: 3px solid black;
+}
+
+.item {
+
+}
+
+.info {
+	width: 30%;
+}
+
+.survey {
+	width: 60%;
+}
+
+.dropdown {
+	border-style: none none solid none;
+
 }
