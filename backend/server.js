@@ -1,6 +1,7 @@
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const express = require('express');
+const path = require('path');
 var cors = require('cors');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
@@ -10,9 +11,9 @@ dotenv.config({ path: '../config.env'})
 
 const API_PORT = 3001;
 const app = express();
-app.use(express.static(path.join(__dirname, "../client/build")));
+app.use(express.static(path.join(__dirname, "/../client/build")));
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname + "../client/build/index.html"));
+  res.sendFile(path.join(__dirname + "/../client/build/index.html"));
   });
 app.use(cors());
 const router = express.Router();

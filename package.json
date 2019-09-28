@@ -7,7 +7,7 @@
     "predeploy": "cd client && npm run build",
     "deploy": "gh-pages -d build",
     "build": "react-scripts build",
-    "start": "cd backend && npm install && node index.js",
+    "start": "cd backend && npm install && node server.js",
     "heroku-postbuild": "cd client && npm install && npm run build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

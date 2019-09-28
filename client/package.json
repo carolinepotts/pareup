@@ -22,7 +22,8 @@
     "react-widgets": "^4.4.11",
     "scroll-snap": "^2.0.4",
     "semantic-ui-react": "^0.88.1",
-    "serve": "^11.1.0"
+    "serve": "^11.1.0",
+    "yarn": "^1.19.0"
   },
   "scripts": {
     "start": "react-scripts start",
