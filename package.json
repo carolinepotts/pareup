@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"cd backend && node server.js\" \"cd client && npm start\"",
-    "predeploy": "npm run build",
+    "predeploy": "cd client && npm run build",
     "deploy": "gh-pages -d build",
     "build": "react-scripts build",
+    "start": "cd backend && npm install && node index.js",
+    "heroku-postbuild": "cd client && npm install && npm run build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
