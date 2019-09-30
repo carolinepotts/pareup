@@ -1,0 +1,18 @@
+.bignum{
+  color: #65CCA0; /*007788 B3FF99 CCFFCC 92AE5A  9DC183 /*007788*/
+  font-size: 1800%;
+  font-family: 'Oleo Script Swash Caps', cursive; /*'Aclonica'; */
+  display: inline-block;
+}
+
+.scrollpage{
+  vertical-align: middle;
+  
+}
+
+.numcol{
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  /* text-align: center; */
+}

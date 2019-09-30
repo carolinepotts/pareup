@@ -4,24 +4,39 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"cd backend && node server.js\" \"cd client && npm start\""
+    "start": "concurrently \"cd backend && node server.js\" \"cd client && npm start\"",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@stickyroll/stickyroll": "^1.1.6",
     "axios": "^0.19.0",
     "concurrently": "^4.0.1",
     "dotenv": "^8.0.0",
-    "mdbreact": "^4.19.2",
+    "faker": "^4.1.0",
+    "gh-pages": "^2.1.1",
+    "lodash": "^4.17.15",
+    "mdbreact": "^4.19.1",
     "multiselect-dropdown-react": "^1.0.5",
     "react": "^16.9.0",
     "react-bootstrap": "^1.0.0-beta.12",
     "react-country-region-selector": "^1.4.3",
-    "react-dom": "^16.9.0",
+    "react-dom": "^16.8.6",
+    "react-dropdown-select": "^3.5.1",
     "react-google-places-suggest": "^3.8.0",
+    "react-headroom": "^2.2.8",
+    "react-helmet": "^5.2.1",
     "react-router-dom": "^5.0.1",
-    "react-scripts": "^3.1.1",
-    "react-widgets": "^4.4.11"
+    "react-scripts": "^3.0.1",
+    "react-sticky": "^6.0.3",
+    "react-widgets": "^4.4.11",
+    "scroll-snap": "^2.0.4",
+    "semantic-ui-react": "^0.88.1"
   }
 }

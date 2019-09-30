@@ -74,20 +74,24 @@ router.post('/putData', (req, res) => {
     console.log('Entered post method');
   let data = new Data();
 
-  const { id, location, salary, internships, equity, signing_bonus } = req.body;
+  const { id, negotiated, salary, equity, one_time, lat, long, ed_level, company_size, job_title } = req.body;
 
-  if ((!id && id !== 0) || !location || !salary || !internships || !equity || !signing_bonus) {
+  if ((!id && id !== 0) || !job_title=='' || !company_size=='' || !salary=='' || !equity=='' || !one_time=='' || !ed_level=='' || !lat=='' || !long=='' || !negotiated=='') {
     return res.json({
       success: false,
       error: 'INVALID INPUTS',
     });
   }
-  data.location = location;
+  data.company_size = company_size;
+  data.ed_level = ed_level;
+  data.job_title = job_title;
+  data.negotiated = negotiated;
   data.salary = salary;
-  data.internships = internships;
   data.equity = equity;
-  data.signing_bonus = signing_bonus;
+  data.one_time = one_time;
   data.id = id;
+  data.lat = lat;
+  data.long = long;
   data.save((err) => {
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true });

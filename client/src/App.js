@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
+import { StickyContainer, Sticky } from 'react-sticky';
 import TrialPage from './pages/trial-page/trial-page';
 import NavBar from './components/nav-bar/nav-bar.component';
 import OffersPage from './pages/offers-page/offers-page.component';
@@ -26,11 +27,11 @@ class App extends Component {
                         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
                         crossOrigin="anonymous"
                     />
+                    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville|Lemon|Nunito|Oleo+Script+Swash+Caps:700|Spicy+Rice&display=swap" rel="stylesheet"></link>
                 </div>
 
                 <div>
                     <NavBar />
-
                     <div className='display-page'>
                         <Switch>
                             <Route exact={true} path='/' component={WelcomePage} />

@@ -7,10 +7,10 @@ const ED_LEVELS = [
         name: 'High school degree or equivalent',
         value: 'High school degree or equivalent'
     },
-    {
-        name: 'Some college',
-        value: 'Some college'
-    },
+    // {
+    //     name: 'Some college',
+    //     value: 'Some college'
+    // },
     {
         name: "Bachelor's degree",
         value: "Bachelor's degree"
