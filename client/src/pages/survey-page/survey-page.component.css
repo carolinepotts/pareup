@@ -1,3 +1,12 @@
+.h3 {
+	padding: 75px;
+
+}
+
+.button {
+	padding: 0px 100px;
+}
+
 .form-container {
 	background-color: #c9e6ff;
 	border-style: solid;
@@ -20,6 +29,8 @@
 }
 
 .filter {
+	border-style: solid;
+	border-radius: 10px; 
     color: black;
     background-color: none;
     width: 75%;
@@ -61,6 +72,7 @@
 	height: 46.6px;
 }
 
+/* if we wanted to make our own dropdowns with a single bottom line
 .dropdown {
 	background-color: white;
 	border: none;
@@ -71,6 +83,7 @@
 .dropdown:focus {
 	outline: none;
 }
+*/
 
 .container {
 	display: flex;
@@ -92,9 +105,4 @@
 
 .survey {
 	width: 60%;
-}
-
-.dropdown {
-	border-style: none none solid none;
-
 }
