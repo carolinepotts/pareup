@@ -10,6 +10,10 @@ import PRONOUNS from '../../fields/pronouns';
 import 'react-widgets/dist/css/react-widgets.css'
 import { Jumbotron, Row, Col, Container, Form, Button } from "react-bootstrap"
 import './survey-page.component.css';
+import STATE_CITY_LIST from '../../fields/states_cities';
+import STATES from '../../fields/states';
+import { Dropdown } from 'semantic-ui-react'
+
 
 import axios from 'axios';
 
@@ -19,12 +23,6 @@ class SurveyPage extends React.Component {
 
         this.state = {
             intervalIsSet: false,
-            job_titles: JOB_TITLES,
-            ed_levels: ED_LEVELS,
-            company_sizes: COMPANY_SIZES,
-            negotiated_statuses: NEGOTIATED,
-            race_ops: RACES,
-            pronoun_ops: PRONOUNS,
 
             job_title: "",
             ed_level: "",
@@ -33,27 +31,18 @@ class SurveyPage extends React.Component {
             equity: 0,
             negotiated: "",
             one_time: 0,
-            lat: "",
-            long: "",
+            selected_state: "Alabama",
+            selected_city: "Abanda",
+            selected_lat: 0,
+            selected_long: 0,
             race: "",
             ethnicity: "",
             pronouns: "",
             data: []
         }
 
-        this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleClearForm = this.handleClearForm.bind(this);
-    }
-
-    handleChange(event) {
-        const {name, value} = event.target;
-
-        this.setState(() => ({
-            [name]: value
-        }))
-
-        console.log(this.state)
     }
 
     handleSubmit(event) {
@@ -67,19 +56,19 @@ class SurveyPage extends React.Component {
 
         axios.post('http://localhost:3001/api/putData', {
             job_title: this.state.job_title,
+            ed_level: this.state.ed_level,
             company_size: this.state.company_size,
-            salary: this.refs.salary.value,
-            equity: this.refs.equity.value,
+            salary: this.state.salary,
+            equity: this.state.equity,
             negotiated: this.state.negotiated,
-            one_time: this.refs.bonus.value,
-            lat: this.state.lat,
-            long: this.state.long,
+            one_time: this.state.one_time,
+            lat: this.state.selected_lat,
+            long: this.state.selected_long,
             race: this.state.race,
             ethnicity: this.state.ethnicity,
             pronouns: this.state.pronouns
         })
         .then(function (response) {
-            console.log(this.state);
             console.log(response);
         })
         .catch(function (error) {
@@ -92,6 +81,8 @@ class SurveyPage extends React.Component {
     handleClearForm(event) {
         event.preventDefault();
         this.setState({
+            intervalIsSet: false,
+
             job_title: "",
             ed_level: "",
             company_size: "",
@@ -99,8 +90,14 @@ class SurveyPage extends React.Component {
             equity: 0,
             negotiated: "",
             one_time: 0,
-            lat: "",
-            long: ""
+            selected_state: "Alabama",
+            selected_city: "Abanda",
+            selected_lat: 0,
+            selected_long: 0,
+            race: "",
+            ethnicity: "",
+            pronouns: "",
+            data: []
         })
     }
 
@@ -119,23 +116,32 @@ class SurveyPage extends React.Component {
                             <Col>
                                 <Form.Label>Company Location</Form.Label>
                                 <br></br>
-                                <input  class="text-input" 
-                                        type="text" 
-                                        name='location-field'
-                                        placeholder="Enter City, State (i.e. Seattle, WA)" required="true" 
-                                        ref="location-field" />
+                                <Dropdown   placeholder='State' 
+                                            search selection options={STATES.map(dat => ({ key: dat, value: dat, text: dat }))}
+                                            onChange={(event, val) => this.setState({ selected_state: val.value }, () => console.log())} />
+                                <Dropdown   placeholder='City' 
+                                            search selection options={STATE_CITY_LIST[this.state.selected_state].map(dat => ({ key: dat.city, value: dat.city, text: dat.city }))}
+                                            onChange={(event, val) => this.setState({
+                                                selected_city: val.value,
+                                                selected_lat: STATE_CITY_LIST[this.state.selected_state].filter(function getSelCityObject(object) {
+                                                    return object.city == val.value
+                                                })[0].lat,
+                                                selected_long: STATE_CITY_LIST[this.state.selected_state].filter(function getSelCityObject(object) {
+                                                    return object.city == val.value
+                                                })[0].long
+                                            }, () => console.log(this.state))} />
+
                                 <br></br>
                             </Col>
                             <Col>
                                 <Form.Label>Company Size</Form.Label>
-                                <DropdownList   className="filter" 
-                                                data={COMPANY_SIZES} 
-                                                textField='name'
-                                                name='company_size'
-                                                placeholder='Select the company size'
-                                                valueField='name'
-                                                onChange={value => this.setState((value.length > 0) ?
-                                                    { company_sizes: value } : { company_sizes: COMPANY_SIZES }, () => this.handleDropDown)} />
+                                <br></br>
+                                <Dropdown   placeholder='Select the company size'
+                                            search selection options={COMPANY_SIZES.map(dat => ({ key: dat.name, value: dat.value, text: dat.name}))}
+                                            onChange={(event, val) => this.setState({
+                                                company_size: val.value
+                                            }, () => console.log(this.state))} />
+                                <br></br>
                             </Col>
                         </Form.Row>
                         <br></br>
@@ -144,11 +150,11 @@ class SurveyPage extends React.Component {
                             <Col>
                                 <Form.Label>Base Salary</Form.Label>
                                 <br></br>
-                                <input  class="number-input" 
+                                <input  className="number-input" 
                                         type="number"
                                         name="salary"
                                         placeholder="Enter yearly salary offered (i.e. XXXXXX)" 
-                                        required="true" 
+                                        required={true} 
                                         ref="salary" />
                                 <br></br>
                                 <br></br>
@@ -156,11 +162,11 @@ class SurveyPage extends React.Component {
                                     <Col>
                                         <Form.Label>Bonus</Form.Label>
                                         <br></br>
-                                        <input  class="number-input" 
+                                        <input  className="number-input" 
                                                 type="number"
                                                 name="bonus"
                                                 placeholder="i.e. XXXX, 0 if N/A" 
-                                                required="true"
+                                                required={true}
                                                 ref="bonus" />
                                         <br></br>
                                     </Col>
@@ -168,11 +174,11 @@ class SurveyPage extends React.Component {
                                     <Col>
                                         <Form.Label>Equity</Form.Label>
                                         <br></br>
-                                        <input  class="percent-input" 
+                                        <input  className="percent-input" 
                                                 type="number"
                                                 name="equity"
                                                 placeholder="X.XX, 0 if N/A" 
-                                                required="true"
+                                                required={true}
                                                 ref="equity" />
                                         <br></br>
                                     </Col>
@@ -180,83 +186,66 @@ class SurveyPage extends React.Component {
                                 
                                 <br></br>
                                 <Form.Label>Did you negotiate this offer?</Form.Label>
-                                <DropdownList   className="filter" 
-                                                data={NEGOTIATED} 
-                                                name='negotiated' 
-                                                textField='name'
-                                                placeholder='Select one from the following'
-                                                valueField='name'
-                                                onChange={value => this.setState((value.length > 0) ?
-                                        { negotiated_statuses: value } : { negotiated_statuses: NEGOTIATED }, () => this.handleChange)} />
+                                <br></br>
+                                <Dropdown   placeholder='Select Yes or No'
+                                            search selection options={NEGOTIATED.map(dat => ({ key: dat.name, value: dat.value, text: dat.value}))}
+                                            onChange={(event, val) => this.setState({
+                                                negotiated: val.value
+                                            }, () => console.log(this.state))} />
                                 <br></br>
                             </Col>
                             <Col>
                                 <Form.Label>Job Title</Form.Label>
-                                <DropdownList  className="filter" 
-                                                data={JOB_TITLES} 
-                                                name='job_title' 
-                                                textField='name'
-                                                placeholder='Select your job title'
-                                                valueField='name'
-                                                onChange={value => this.setState((value.length > 0) ?
-                                        { job_titles: value } : { job_titles: JOB_TITLES }, () => this.handleChange)} />
-
+                                <br></br>
+                                <Dropdown   placeholder='Select your job title'
+                                            search selection options={JOB_TITLES.map(dat => ({ key: dat.name, value: dat.value, text: dat.value}))}
+                                            onChange={(event, val) => this.setState({
+                                                job_title: val.value
+                                            }, () => console.log(this.state))} />
+                                <br></br>
+                                <br></br>
                                 <Form.Label>Education Level</Form.Label>
-                                <DropdownList   className="filter" 
-                                                data={ED_LEVELS} 
-                                                textField='name'
-                                                name='ed_level'
-                                                placeholder='Select your current or most recent level of education'
-                                                valueField='name'
-                                                onChange={value => this.setState((value.length > 0) ?
-                                        { ed_levels: value } : { ed_levels: ED_LEVELS }, () => this.handleChange)} />
+                                <br></br>
+                                <Dropdown   placeholder='Select your current or most recent level of education'
+                                            search selection options={ED_LEVELS.map(dat => ({ key: dat.name, value: dat.value, text: dat.value}))}
+                                            onChange={(event, val) => this.setState({
+                                                ed_level: val.value
+                                            }, () => console.log(this.state))} />
+                                <br></br>
                             </Col>
                         </Form.Row>
+                        <br></br>
                         <h3>Personal Information (Optional)</h3>
                         <Form.Row>
                             <Col>
                                 <Form.Label>Race</Form.Label>
-                                <Multiselect    className="filter" 
-                                                data={RACES}   
-                                                name='race'
-                                                textField='name'
-                                                placeholder='Select the race you identify with'
-                                                valueField='name'
-                                                onChange={value => this.setState((value.length > 0) ?
-                                                    { race_ops: value } : { race_ops: RACES }, () => this.handleChange)} />
-
-                                <Form.Label>Do you identify as Hispanic or Latinx?</Form.Label>
                                 <br></br>
-                                <div class="btn-group">
-                                    <button     name="ethnicity"
-                                                onChange={this.handleChange}>
-                                        Yes</button>
-                                    <button     name="ethnicity"
-                                                onChange={this.handleChange}>
-                                        No</button>
-                                </div>
+                                <Dropdown   placeholder='Select the race you most closely identify with'
+                                            search selection options={RACES.map(dat => ({ key: dat.name, value: dat.value, text: dat.value}))}
+                                            onChange={(event, val) => this.setState({
+                                                race: val.value
+                                            }, () => console.log(this.state))} />
                                 <br></br>
                             </Col>
                             <Col>
                                 <Form.Label>Personal Pronouns</Form.Label>
-                                <DropdownList   className="filter" 
-                                                data={PRONOUNS}
-                                                name='pronouns'
-                                                textField='name'
-                                                placeholder='Select your personal pronouns'
-                                                valueField='name'
-                                                onChange={value => this.setState((value.length > 0) ?
-                                                    { pronoun_ops: value } : { pronoun_ops: PRONOUNS }, () => this.handleChange)} />
+                                <br></br>
+                                <Dropdown   placeholder='Select the pronouns you most closely identify with'
+                                            search selection options={PRONOUNS.map(dat => ({ key: dat.name, value: dat.value, text: dat.value}))}
+                                            onChange={(event, val) => this.setState({
+                                                pronouns: val.value
+                                            }, () => console.log(this.state))} />
+                                <br></br>
                             </Col>
-
+                        <br></br>
                         </Form.Row>
-                        <Form.Row style={{ marginTop: '50px'}}>
-                            <Button class="main-btn" 
+                        <Form.Row style={{ marginTop: '50px' }}>
+                            <Button className="clear-btn" 
                                     align="center" 
                                     onClick={this.handleClearForm}>
                                     Clear
                             </Button>
-                            <Button class="main-btn" 
+                            <Button className="submit-btn" 
                                     align="center" 
                                     onClick={this.handleSubmit}>
                                     Submit
