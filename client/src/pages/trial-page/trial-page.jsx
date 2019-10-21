@@ -105,7 +105,7 @@ class TrialPage extends React.Component {
             internships: internships,
             equity: equity,
             signing_bonus: signing_bonus
-        });
+        }).then(res=>console.log(res));
     };
 
     // our delete method that uses our backend api
@@ -148,6 +148,12 @@ class TrialPage extends React.Component {
         const { country, region } = this.state;
         return (
             <div>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
                 <ul>
                     {data.length <= 0
                         ? 'NO DB ENTRIES YET'

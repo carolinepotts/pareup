@@ -36,13 +36,13 @@ class SurveyPage extends React.Component {
             selected_lat: 0,
             selected_long: 0,
             race: "",
-            ethnicity: "",
+            // ethnicity: "",
             pronouns: "",
             data: []
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleClearForm = this.handleClearForm.bind(this);
+        this.handleClear = this.handleClear.bind(this);
     }
 
     handleSubmit(event) {
@@ -75,21 +75,18 @@ class SurveyPage extends React.Component {
             console.log(error);
         });
 
-        this.handleClearForm(event);
+        this.handleClear(event);
     }
 
-    handleClearForm(event) {
-        event.preventDefault();
+    handleClear(event) {
         this.setState({
-            intervalIsSet: false,
-
             job_title: "",
             ed_level: "",
             company_size: "",
-            salary: 0,
-            equity: 0,
+            salary: "",
+            equity: "",
             negotiated: "",
-            one_time: 0,
+            one_time: "",
             selected_state: "Alabama",
             selected_city: "Abanda",
             selected_lat: 0,
@@ -107,7 +104,7 @@ class SurveyPage extends React.Component {
             <div style={{ paddingTop: 70 }} className='App'>
                 <h1 style={{ color: `#007788`, textAlign: "left", display: "inline" }}> Submit your Offer</h1>
                 <h4 style={{ color: `#007788`, textAlign: "left", display: "inline" }}> <i>by filling in the survey below</i></h4><br />
-                <h5>We understand that talking about money and salaries is sometimes considered taboo, but the more transparent we all become about our offers, the closer we will get to achieveing pay equity for all. Your response will remain completely anonymous. We thank you for your help and encourage you to join the fight for pay equity!</h5>
+                <h5>We understand that talking about money and salaries is sometimes considered taboo, but the more transparent we all become about our offers, the closer we will get to achieving pay equity for all. Your response will remain completely anonymous. We thank you for your help and encourage you to join the fight for pay equity!</h5>
                 <br />
                 <div className="form-container">
                     <Form className='filter-list'>
@@ -148,27 +145,29 @@ class SurveyPage extends React.Component {
                         <h3>Compensation Information (Required)</h3>
                         <Form.Row>
                             <Col>
-                                <Form.Label>Base Salary</Form.Label>
+                                <Form.Label>Base Salary </Form.Label>
                                 <br></br>
                                 <input  className="number-input" 
                                         type="number"
                                         name="salary"
-                                        placeholder="Enter yearly salary offered (i.e. XXXXXX)" 
-                                        required={true} 
-                                        ref="salary" />
+                                        placeholder="$" 
+                                        required={true}  
+                                        onChange={(event) => this.setState({ 
+                                            salary: event.target.value }, () => console.log(this.state))} />
                                 <br></br>
                                 <br></br>
                                 <Row>
                                     <Col>
-                                        <Form.Label>Bonus</Form.Label>
+                                        <Form.Label>One-Time Bonuses </Form.Label>
                                         <br></br>
                                         <input  className="number-input" 
                                                 type="number"
                                                 name="bonus"
-                                                placeholder="i.e. XXXX, 0 if N/A" 
+                                                placeholder="$, 0 if N/A" 
                                                 required={true}
-                                                ref="bonus" />
-                                        <br></br>
+                                                onChange={(event) => this.setState({ 
+                                                    one_time: event.target.value }, () => console.log(this.state))}  />
+                                            <br></br>
                                     </Col>
 
                                     <Col>
@@ -177,10 +176,11 @@ class SurveyPage extends React.Component {
                                         <input  className="percent-input" 
                                                 type="number"
                                                 name="equity"
-                                                placeholder="X.XX, 0 if N/A" 
+                                                placeholder="$, 0 if N/A" 
                                                 required={true}
-                                                ref="equity" />
-                                        <br></br>
+                                                onChange={(event) => this.setState({ 
+                                                    equity: event.target.value }, () => console.log(this.state))}  />   
+                                            <br></br>
                                     </Col>
                                 </Row>
                                 
@@ -239,12 +239,12 @@ class SurveyPage extends React.Component {
                             </Col>
                         <br></br>
                         </Form.Row>
-                        <Form.Row style={{ marginTop: '50px' }}>
-                            <Button className="clear-btn" 
+                        <Form.Row style={{ marginTop: '50px'}}>
+                            {/* <Button className="clear-btn" 
                                     align="center" 
-                                    onClick={this.handleClearForm}>
+                                    onClick={this.handleClear}>
                                     Clear
-                            </Button>
+                            </Button> */}
                             <Button className="submit-btn" 
                                     align="center" 
                                     onClick={this.handleSubmit}>

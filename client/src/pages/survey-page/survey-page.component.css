@@ -7,6 +7,8 @@
 	padding: 0px 100px;
 }
 
+
+
 .form-container {
 	background-color: #FFFFFF;
 	border-style: solid;
@@ -53,6 +55,7 @@
 .number-input {
 	border-radius: 5px;
 	border-style: solid;
+	border-color: #d3d3d3;
 	padding: 5px 5px;
 	width: 75%;
 	height: 46.6px;
@@ -62,6 +65,7 @@
 	background-color: white;
 	border: none;
 	border-style: solid; 
+	border-color:#d3d3d3;
 	border-radius: 5px;
 	padding: 5px 5px;
 	width: 75%;
@@ -74,6 +78,7 @@
 
 .percent-input {
 	border-style: solid;
+	border-color:#d3d3d3;
 	border-radius: 5px;
 	padding: 5px 5px;
 	width: 75%;
@@ -87,7 +92,6 @@
 	border-style: none none solid none !important; 
 	padding: 3px 5px;
 }
-
 .dropdown:focus {
 	outline: none;
 }

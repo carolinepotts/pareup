@@ -1,16 +1,22 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+
 // this will be our data base's data structure 
 const DataSchema = new Schema(
   {
     id: Number,
-    negotiated: String,
+    job_title: String,
+    ed_level: String,
+    company_size: String,
     salary: Number,
     equity: Number,
+    negotiated: String,
     one_time: Number,
     lat: Number,
-    long: Number
+    long: Number,
+    race: String,
+    pronouns: String
   },
   { timestamps: true }
 );
