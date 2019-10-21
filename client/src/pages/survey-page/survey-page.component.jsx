@@ -1,6 +1,4 @@
 import React from 'react';
-import { DropdownList } from 'react-widgets'
-import { Multiselect } from 'react-widgets';
 import ED_LEVELS from '../../fields/ed_levels';
 import JOB_TITLES from '../../fields/job_titles';
 import NEGOTIATED from '../../fields/negotiated';
@@ -8,7 +6,7 @@ import COMPANY_SIZES from '../../fields/company_sizes';
 import RACES from '../../fields/races';
 import PRONOUNS from '../../fields/pronouns';
 import 'react-widgets/dist/css/react-widgets.css'
-import { Jumbotron, Row, Col, Container, Form, Button } from "react-bootstrap"
+import { Row, Col, Container, Form, Button } from "react-bootstrap"
 import './survey-page.component.css';
 import STATE_CITY_LIST from '../../fields/states_cities';
 import STATES from '../../fields/states';
@@ -22,15 +20,13 @@ class SurveyPage extends React.Component {
         super(props);
 
         this.state = {
-            intervalIsSet: false,
-
             job_title: "",
             ed_level: "",
             company_size: "",
-            salary: 0,
-            equity: 0,
+            salary: "",
+            equity: "",
             negotiated: "",
-            one_time: 0,
+            one_time: "",
             selected_state: "Alabama",
             selected_city: "Abanda",
             selected_lat: 0,
@@ -42,12 +38,12 @@ class SurveyPage extends React.Component {
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleClearForm = this.handleClearForm.bind(this);
+        this.handleClear = this.handleClear.bind(this);
     }
 
     handleSubmit(event) {
         event.preventDefault();
-
+        
         let currentIds = this.state.data.map((data) => data.id);
         let idToBeAdded = 0;
         while (currentIds.includes(idToBeAdded)) {
@@ -55,15 +51,17 @@ class SurveyPage extends React.Component {
         }
 
         axios.post('http://localhost:3001/api/putData', {
-            job_title: this.state.job_title,
-            ed_level: this.state.ed_level,
-            company_size: this.state.company_size,
+            id: idToBeAdded,
+            negotiated: this.state.negotiated,
             salary: this.state.salary,
             equity: this.state.equity,
-            negotiated: this.state.negotiated,
             one_time: this.state.one_time,
             lat: this.state.selected_lat,
             long: this.state.selected_long,
+            job_title: this.state.job_title,
+            ed_level: this.state.ed_level,
+            company_size: this.state.company_size,
+            job_title: this.state.job_title,
             race: this.state.race,
             ethnicity: this.state.ethnicity,
             pronouns: this.state.pronouns
@@ -75,21 +73,18 @@ class SurveyPage extends React.Component {
             console.log(error);
         });
 
-        this.handleClearForm(event);
+        this.handleClear(event);
     }
 
-    handleClearForm(event) {
-        event.preventDefault();
+    handleClear(event) {
         this.setState({
-            intervalIsSet: false,
-
             job_title: "",
             ed_level: "",
             company_size: "",
-            salary: 0,
-            equity: 0,
+            salary: "",
+            equity: "",
             negotiated: "",
-            one_time: 0,
+            one_time: "",
             selected_state: "Alabama",
             selected_city: "Abanda",
             selected_lat: 0,
@@ -116,10 +111,14 @@ class SurveyPage extends React.Component {
                             <Col>
                                 <Form.Label>Company Location</Form.Label>
                                 <br></br>
-                                <Dropdown   placeholder='State' 
+                                <Dropdown   className='dropdown'
+                                            value={this.state.selected_state}
+                                            placeholder='State' 
                                             search selection options={STATES.map(dat => ({ key: dat, value: dat, text: dat }))}
                                             onChange={(event, val) => this.setState({ selected_state: val.value }, () => console.log())} />
-                                <Dropdown   placeholder='City' 
+                                <Dropdown   className='dropdown'
+                                            value={this.state.selected_city}
+                                            placeholder='City' 
                                             search selection options={STATE_CITY_LIST[this.state.selected_state].map(dat => ({ key: dat.city, value: dat.city, text: dat.city }))}
                                             onChange={(event, val) => this.setState({
                                                 selected_city: val.value,
@@ -136,7 +135,9 @@ class SurveyPage extends React.Component {
                             <Col>
                                 <Form.Label>Company Size</Form.Label>
                                 <br></br>
-                                <Dropdown   placeholder='Select the company size'
+                                <Dropdown   className='dropdown'
+                                            value={this.state.company_size}
+                                            placeholder='Select the company size'
                                             search selection options={COMPANY_SIZES.map(dat => ({ key: dat.name, value: dat.value, text: dat.name}))}
                                             onChange={(event, val) => this.setState({
                                                 company_size: val.value
@@ -153,9 +154,11 @@ class SurveyPage extends React.Component {
                                 <input  className="number-input" 
                                         type="number"
                                         name="salary"
+                                        value={this.state.salary}
                                         placeholder="Enter yearly salary offered (i.e. XXXXXX)" 
                                         required={true} 
-                                        ref="salary" />
+                                        onChange={(event) => this.setState({ 
+                                            salary: event.target.value }, () => console.log(this.state))} />
                                 <br></br>
                                 <br></br>
                                 <Row>
@@ -164,10 +167,12 @@ class SurveyPage extends React.Component {
                                         <br></br>
                                         <input  className="number-input" 
                                                 type="number"
-                                                name="bonus"
+                                                name="one_time"
+                                                value={this.state.one_time}
                                                 placeholder="i.e. XXXX, 0 if N/A" 
                                                 required={true}
-                                                ref="bonus" />
+                                                onChange={(event) => this.setState({ 
+                                                one_time: event.target.value }, () => console.log(this.state))}  />
                                         <br></br>
                                     </Col>
 
@@ -177,9 +182,11 @@ class SurveyPage extends React.Component {
                                         <input  className="percent-input" 
                                                 type="number"
                                                 name="equity"
-                                                placeholder="X.XX, 0 if N/A" 
+                                                value={this.state.equity}
+                                                placeholder="i.e. X.XX, 0 if N/A" 
                                                 required={true}
-                                                ref="equity" />
+                                                onChange={(event) => this.setState({ 
+                                                equity: event.target.value }, () => console.log(this.state))}  />   
                                         <br></br>
                                     </Col>
                                 </Row>
@@ -187,7 +194,9 @@ class SurveyPage extends React.Component {
                                 <br></br>
                                 <Form.Label>Did you negotiate this offer?</Form.Label>
                                 <br></br>
-                                <Dropdown   placeholder='Select Yes or No'
+                                <Dropdown   className='dropdown'
+                                            value={this.state.negotiated}
+                                            placeholder='Select Yes or No'
                                             search selection options={NEGOTIATED.map(dat => ({ key: dat.name, value: dat.value, text: dat.value}))}
                                             onChange={(event, val) => this.setState({
                                                 negotiated: val.value
@@ -197,7 +206,9 @@ class SurveyPage extends React.Component {
                             <Col>
                                 <Form.Label>Job Title</Form.Label>
                                 <br></br>
-                                <Dropdown   placeholder='Select your job title'
+                                <Dropdown   className='dropdown'
+                                            value={this.state.job_title}
+                                            placeholder='Select your job title'
                                             search selection options={JOB_TITLES.map(dat => ({ key: dat.name, value: dat.value, text: dat.value}))}
                                             onChange={(event, val) => this.setState({
                                                 job_title: val.value
@@ -206,7 +217,9 @@ class SurveyPage extends React.Component {
                                 <br></br>
                                 <Form.Label>Education Level</Form.Label>
                                 <br></br>
-                                <Dropdown   placeholder='Select your current or most recent level of education'
+                                <Dropdown   className='dropdown'
+                                            value={this.state.ed_level}
+                                            placeholder='Select your current or most recent level of education'
                                             search selection options={ED_LEVELS.map(dat => ({ key: dat.name, value: dat.value, text: dat.value}))}
                                             onChange={(event, val) => this.setState({
                                                 ed_level: val.value
@@ -220,8 +233,10 @@ class SurveyPage extends React.Component {
                             <Col>
                                 <Form.Label>Race</Form.Label>
                                 <br></br>
-                                <Dropdown   placeholder='Select the race you most closely identify with'
-                                            search selection options={RACES.map(dat => ({ key: dat.name, value: dat.value, text: dat.value}))}
+                                <Dropdown   className='dropdown'
+                                            value={this.state.race}
+                                            placeholder='Select the race(s) you identify with'
+                                            fluid multiple search selection options={RACES.map(dat => ({ key: dat.name, value: dat.value, text: dat.value}))}
                                             onChange={(event, val) => this.setState({
                                                 race: val.value
                                             }, () => console.log(this.state))} />
@@ -230,7 +245,9 @@ class SurveyPage extends React.Component {
                             <Col>
                                 <Form.Label>Personal Pronouns</Form.Label>
                                 <br></br>
-                                <Dropdown   placeholder='Select the pronouns you most closely identify with'
+                                <Dropdown   className='dropdown'
+                                            value={this.state.pronouns}
+                                            placeholder='Select the pronouns you most closely identify with'
                                             search selection options={PRONOUNS.map(dat => ({ key: dat.name, value: dat.value, text: dat.value}))}
                                             onChange={(event, val) => this.setState({
                                                 pronouns: val.value
@@ -242,7 +259,7 @@ class SurveyPage extends React.Component {
                         <Form.Row style={{ marginTop: '50px' }}>
                             <Button className="clear-btn" 
                                     align="center" 
-                                    onClick={this.handleClearForm}>
+                                    onClick={this.handleClear}>
                                     Clear
                             </Button>
                             <Button className="submit-btn" 
