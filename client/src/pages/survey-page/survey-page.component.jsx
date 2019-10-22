@@ -33,7 +33,6 @@ class SurveyPage extends React.Component {
             selected_long: 0,
             race: [],
             selected_ethnicity:'hispanic_latinx',
-            ethnicity: "",
             pronouns: "",
             data: []
         }
@@ -92,7 +91,6 @@ class SurveyPage extends React.Component {
             selected_long: 0,
             race: [],
             selected_ethnicity: 'hispanic_latinx',
-            ethnicity: "",
             pronouns: "",
             data: []
         })
