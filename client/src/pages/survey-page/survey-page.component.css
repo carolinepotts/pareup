@@ -7,8 +7,6 @@
 	padding: 0px 100px;
 }
 
-
-
 .form-container {
 	background-color: #FFFFFF;
 	border-style: solid;
@@ -54,20 +52,17 @@
 
 .number-input {
 	border-radius: 5px;
-	border-style: solid;
 	padding: 5px 5px;
 	width: 75%;
-	height: 46.6px;
+	height: 55px;
 }
 
 .text-input {
-	background-color: white;
-	border: none;
-	border-style: solid; 
+	border-style: none;
 	border-radius: 5px;
 	padding: 5px 5px;
 	width: 75%;
-	height: 46.6px;
+	height: 55px;
 }
 
 .text-input:focus {
@@ -75,11 +70,10 @@
 }
 
 .percent-input {
-	border-style: solid;
 	border-radius: 5px;
 	padding: 5px 5px;
 	width: 75%;
-	height: 46.6px;
+	height: 55px;
 }
 
 /* if we wanted to make our own dropdowns with a single bottom line

@@ -31,7 +31,8 @@ class SurveyPage extends React.Component {
             selected_city: "Abanda",
             selected_lat: 0,
             selected_long: 0,
-            race: "",
+            race: [],
+            selected_ethnicity:'hispanic_latinx',
             ethnicity: "",
             pronouns: "",
             data: []
@@ -63,7 +64,7 @@ class SurveyPage extends React.Component {
             company_size: this.state.company_size,
             job_title: this.state.job_title,
             race: this.state.race,
-            ethnicity: this.state.ethnicity,
+            ethnicity: this.state.selected_ethnicity,
             pronouns: this.state.pronouns
         })
         .then(function (response) {
@@ -89,7 +90,8 @@ class SurveyPage extends React.Component {
             selected_city: "Abanda",
             selected_lat: 0,
             selected_long: 0,
-            race: "",
+            race: [],
+            selected_ethnicity: 'hispanic_latinx',
             ethnicity: "",
             pronouns: "",
             data: []
@@ -240,6 +242,27 @@ class SurveyPage extends React.Component {
                                             onChange={(event, val) => this.setState({
                                                 race: val.value
                                             }, () => console.log(this.state))} />
+                                <br></br>
+                                <Form.Label>Do you identify as Hispanic or Latinx?</Form.Label>
+                                <div className="radio">
+                                  <label>
+                                    <input  type="radio" 
+                                            value="hispanic_latinx" 
+                                            checked={this.state.selected_ethnicity === 'hispanic_latinx'}
+                                            onClick={(event) => this.setState({
+                                                selected_ethnicity: 'hispanic_latinx'}, () => console.log(this.state))} />
+                                    Yes
+                                  </label>
+                                </div>
+                                <div className="radio">
+                                  <label>
+                                    <input  type="radio" 
+                                            value="Not_Hispanic_Latinx" checked={this.state.selected_ethnicity === 'not_hispanic_latinx'} 
+                                            onClick={(event) => this.setState({
+                                                selected_ethnicity: 'not_hispanic_latinx'}, () => console.log(this.state))}/>
+                                    No
+                                  </label>
+                                </div>
                                 <br></br>
                             </Col>
                             <Col>

@@ -7,10 +7,6 @@ const RACES = [
         name: 'Black or African American',
         value: 'Black or African American'
     },
-    // {
-    //     name: 'Some college',
-    //     value: 'Some college'
-    // },
     {
         name: "East Asian",
         value: "East Asian"
