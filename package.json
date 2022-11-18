@@ -33,7 +33,7 @@
     "react-headroom": "^2.2.8",
     "react-helmet": "^5.2.1",
     "react-router-dom": "^5.0.1",
-    "react-scripts": "^3.0.1",
+    "react-scripts": "^5.0.1",
     "react-sticky": "^6.0.3",
     "react-widgets": "^4.4.11",
     "scroll-snap": "^2.0.4",
